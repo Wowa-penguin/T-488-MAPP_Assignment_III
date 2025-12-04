@@ -1,2 +1,0 @@
-// cinema detail screen
-
