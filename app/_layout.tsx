@@ -4,10 +4,8 @@ import { Provider } from 'react-redux';
 
 export default function RootLayout() {
     return (
-
-            <Stack>
-                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            </Stack>
-
+        <Provider store={store}>
+            <Stack screenOptions={{ headerShown: false }} />
+        </Provider>
     );
 }

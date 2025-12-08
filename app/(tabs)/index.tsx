@@ -1,9 +1,14 @@
 import ScreenContainer from '@/components/screenContainer';
+import { AppDispatch, RootState } from '@/store';
 import { Link } from 'expo-router';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function HomeScreen() {
+    const dispatch = useDispatch<AppDispatch>();
+    const movies = useSelector((state: RootState) => state.movies.movies);
+
     return (
         <ScreenContainer>
             <View style={styles.header}>
