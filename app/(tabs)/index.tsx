@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 export default function HomeScreen() {
     const dispatch = useDispatch<AppDispatch>();
     const movies = useSelector((state: RootState) => state.movies.movies);
+    const cinemas = useSelector((state: RootState) => state.cinemas.cinemas);
 
     return (
         <ScreenContainer>
