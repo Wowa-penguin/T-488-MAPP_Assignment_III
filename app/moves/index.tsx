@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function Tab() {
+const Index = () => {
     return (
         <View style={styles.container}>
             <Text>Tab [Home|Movies]</Text>
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -15,3 +15,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
 });
+
+export default Index;

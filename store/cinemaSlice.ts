@@ -1,6 +1,6 @@
 import type { Cinema, Movie } from '@/models/movies';
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchMovies } from './moviesSlice';
+import { fetchMovies } from './movieSlice';
 
 type CinemaState = {
     cinemas: Cinema[];

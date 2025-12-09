@@ -1,5 +1,5 @@
 import { AppDispatch, RootState } from '@/store';
-import { fetchMovies } from '@/store/moviesSlice';
+import { fetchMovies } from '@/store/movieSlice';
 import React, { useEffect } from 'react';
 import {
     ActivityIndicator,

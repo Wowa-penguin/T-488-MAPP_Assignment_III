@@ -11,7 +11,7 @@ import {
 import ScreenContainer from '@/components/screenContainer';
 import { CINEMAS } from '@/constants/cinemas';
 
-const CinemaListScreen = () => {
+const Index = () => {
     const sortedCinemas = [...CINEMAS].sort((a, b) =>
         a.name.localeCompare(b.name)
     );
@@ -47,8 +47,6 @@ const CinemaListScreen = () => {
     );
 };
 
-export default CinemaListScreen;
-
 const styles = StyleSheet.create({
     title: {
         fontSize: 28,
@@ -81,3 +79,5 @@ const styles = StyleSheet.create({
         color: '#94a3b8',
     },
 });
+
+export default Index;
