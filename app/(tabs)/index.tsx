@@ -1,14 +1,22 @@
+import useMovies from '@/api/useMoves';
 import ScreenContainer from '@/components/screenContainer';
 import { AppDispatch, RootState } from '@/store';
 import { Link } from 'expo-router';
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function HomeScreen() {
     const dispatch = useDispatch<AppDispatch>();
-    const movies = useSelector((state: RootState) => state.movies.movies);
+    // const movies = useSelector((state: RootState) => state.movies.movies);
     const cinemas = useSelector((state: RootState) => state.cinemas.cinemas);
+
+    const [data, setData] = useState({});
+    const { movies, loading } = useMovies();
+
+    if (!loading) {
+        console.log(movies);
+    }
 
     return (
         <ScreenContainer>
@@ -18,6 +26,8 @@ export default function HomeScreen() {
                     Find cinemas, movies and show times
                 </Text>
             </View>
+
+            {/* <Button title="Test " onPress={getData} /> */}
 
             <View style={styles.buttons}>
                 <Link href="/cinemas" asChild>
