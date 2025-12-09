@@ -11,6 +11,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function HomeScreen() {
+    //* #### Redux state ####
     const dispatch = useDispatch<AppDispatch>();
     const {
         items: movies,
@@ -18,6 +19,8 @@ export default function HomeScreen() {
         error,
     } = useSelector((state: RootState) => state.movies);
     const cinemas = useSelector((state: RootState) => state.cinemas.cinemas);
+
+    //* #### Loading movies from api ####
 
     useEffect(() => {
         if (status === 'idle') {
@@ -42,7 +45,6 @@ export default function HomeScreen() {
         );
     }
 
-    console.log(cinemas);
     return (
         <FlatList
             data={movies}
