@@ -1,13 +1,9 @@
+import Button from '@/components/button';
+import Loading from '@/components/loading';
 import { AppDispatch, RootState } from '@/store';
 import { fetchMovies } from '@/store/movieSlice';
 import React, { useEffect } from 'react';
-import {
-    ActivityIndicator,
-    FlatList,
-    StyleSheet,
-    Text,
-    View,
-} from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function HomeScreen() {
@@ -29,12 +25,7 @@ export default function HomeScreen() {
     }, [dispatch, status]);
 
     if (status === 'loading') {
-        return (
-            <View>
-                <ActivityIndicator />
-                <Text>Loading movies…</Text>
-            </View>
-        );
+        return <Loading />;
     }
 
     if (status === 'failed') {
@@ -46,11 +37,28 @@ export default function HomeScreen() {
     }
 
     return (
-        <FlatList
-            data={movies}
-            keyExtractor={(item) => String(item._id)}
-            renderItem={({ item }) => <Text>{item.title}</Text>}
-        />
+        <View>
+            {/* <FlatList
+                data={movies}
+                keyExtractor={(item) => String(item._id)}
+                renderItem={({ item }) => <Text>{item.title}</Text>}
+            /> */}
+            <Button
+                style={{
+                    backgroundColor: '#4A90E2',
+                    padding: 12,
+                    borderRadius: 8,
+                    alignItems: 'center',
+                }}
+                textStyle={{
+                    color: '#fff',
+                    fontWeight: '600',
+                }}
+                onPress={() => console.log('Pressed!')}
+            >
+                Save
+            </Button>
+        </View>
     );
 
     // return (
