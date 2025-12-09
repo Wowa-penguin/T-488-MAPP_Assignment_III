@@ -4,13 +4,14 @@ export default StyleSheet.create({
     container: {
         gap: 15,
         marginBottom: 15,
+        alignSelf: 'center',
     },
     movieCardContainer: {
         flexDirection: 'row',
         alignSelf: 'center',
         borderStyle: 'solid',
         borderWidth: 1,
-        width: '90%',
+        width: '95%',
         height: 150,
         gap: 5,
     },

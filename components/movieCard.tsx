@@ -3,12 +3,13 @@ import styles from '@/styles/movies';
 import { Image, Text, View } from 'react-native';
 
 type MovieCardProps = {
+    _id: string;
     title: string;
     poster: string;
     genres: Genre[];
 };
 
-const MovieCard = ({ title, poster, genres }: MovieCardProps) => {
+const MovieCard = ({ _id, title, poster, genres }: MovieCardProps) => {
     return (
         <View style={styles.movieCardContainer}>
             <Image
