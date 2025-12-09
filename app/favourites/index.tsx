@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 const Index = () => {
     return (
         <View>
-            <Text>Upcoming movies</Text>
+            <Text>Faciurites</Text>
         </View>
     );
 };
