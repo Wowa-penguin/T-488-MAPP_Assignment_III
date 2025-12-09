@@ -1,83 +1,27 @@
-import { Link } from 'expo-router';
+import CinemaCard from '@/components/cinemaCard';
+import { AppDispatch, RootState } from '@/store';
+import styles from '@/styles/cinemas';
 import React from 'react';
-import {
-    FlatList,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-} from 'react-native';
-
-import ScreenContainer from '@/components/screenContainer';
-import { CINEMAS } from '@/constants/cinemas';
+import { ScrollView, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Index = () => {
-    const sortedCinemas = [...CINEMAS].sort((a, b) =>
-        a.name.localeCompare(b.name)
-    );
+    const dispatch = useDispatch<AppDispatch>();
+    const cinemas = useSelector((state: RootState) => state.cinemas.cinemas);
 
     return (
-        <ScreenContainer>
-            <Text style={styles.title}>Cinemas</Text>
-            <Text style={styles.subtitle}>
-                Select a cinema to see more details.
-            </Text>
-
-            <FlatList
-                data={sortedCinemas}
-                keyExtractor={(item) => item.id}
-                contentContainerStyle={styles.list}
-                ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
-                renderItem={({ item }) => (
-                    <Link
-                        href={{
-                            pathname: '/cinemas/[id]',
-                            params: { id: item.id },
-                        }}
-                        asChild
-                    >
-                        <TouchableOpacity style={styles.card}>
-                            <Text style={styles.name}>{item.name}</Text>
-                            <Text style={styles.website}>{item.website}</Text>
-                        </TouchableOpacity>
-                    </Link>
-                )}
-            />
-        </ScreenContainer>
+        <ScrollView>
+            <View style={styles.container}>
+                {cinemas.map((cinema) => (
+                    <CinemaCard
+                        key={cinema.id}
+                        id={cinema.id}
+                        name={cinema.name}
+                    />
+                ))}
+            </View>
+        </ScrollView>
     );
 };
-
-const styles = StyleSheet.create({
-    title: {
-        fontSize: 28,
-        fontWeight: '700',
-        color: 'white',
-        marginBottom: 4,
-    },
-    subtitle: {
-        fontSize: 14,
-        color: '#cbd5e1',
-        marginBottom: 16,
-    },
-    list: {
-        paddingTop: 8,
-        paddingBottom: 24,
-    },
-    card: {
-        backgroundColor: '#1e293b',
-        padding: 16,
-        borderRadius: 12,
-    },
-    name: {
-        fontSize: 18,
-        fontWeight: '600',
-        color: 'white',
-        marginBottom: 4,
-    },
-    website: {
-        fontSize: 14,
-        color: '#94a3b8',
-    },
-});
 
 export default Index;
