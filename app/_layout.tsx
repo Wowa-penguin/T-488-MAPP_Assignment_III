@@ -1,7 +1,5 @@
 import { store } from '@/store/index';
-
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Tabs } from 'expo-router';
 import { Provider } from 'react-redux';
 
@@ -19,7 +17,7 @@ export default function RootLayout() {
                     }}
                 />
                 <Tabs.Screen
-                    name="cinemas/index"
+                    name="cinemas"
                     options={{
                         title: 'Cinema',
                         tabBarIcon: ({ color }) => (
@@ -28,15 +26,20 @@ export default function RootLayout() {
                     }}
                 />
                 <Tabs.Screen
-                    name="movies/index"
+                    name="movies"
                     options={{
                         title: 'Movies',
                         tabBarIcon: ({ color }) => (
-                            <MaterialCommunityIcons
-                                name="file-move"
-                                size={24}
-                                color="black"
-                            />
+                            <FontAwesome size={28} name="at" color={color} />
+                        ),
+                    }}
+                />
+                <Tabs.Screen
+                    name="upcoming"
+                    options={{
+                        title: 'Upcoming movies',
+                        tabBarIcon: ({ color }) => (
+                            <FontAwesome size={28} name="at" color={color} />
                         ),
                     }}
                 />
