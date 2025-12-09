@@ -1,19 +1,31 @@
-import { StyleSheet, Text, View } from 'react-native';
+import MovieCard from '@/components/movieCard';
+import { AppDispatch, RootState } from '@/store';
+import styles from '@/styles/movies';
+import { ScrollView, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Index = () => {
+    const dispatch = useDispatch<AppDispatch>();
+    const movies = useSelector((state: RootState) => state.movies);
     return (
-        <View style={styles.container}>
-            <Text>Tab [Home|Movies]</Text>
-        </View>
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
+            <View style={styles.container}>
+                {movies.items.map((movie) => (
+                    <MovieCard
+                        key={movie._id}
+                        title={
+                            movie.alternativeTitles.length <
+                                movie.title.length && movie.alternativeTitles
+                                ? movie.alternativeTitles
+                                : movie.title
+                        }
+                        poster={movie.poster}
+                        genres={movie.genres}
+                    />
+                ))}
+            </View>
+        </ScrollView>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-});
 
 export default Index;
