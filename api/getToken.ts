@@ -6,30 +6,23 @@ type ResData = {
     token: string;
 };
 
-const getToken = async () => {
-    try {
-        const response = await axios.post(
-            'https://api.kvikmyndir.is/authenticate',
-            {},
-            {
-                auth: {
-                    username: 'Heimir',
-                    password: '$%SVU#atUGga$b6JrNSpH#g9Wfv',
-                },
-            }
-        );
-
-        const data: ResData = response.data;
-
-        if (data.success) {
-            console.log('Data:', data.token);
+const getToken = async (): Promise<string> => {
+    const response = await axios.post<ResData>(
+        'https://api.kvikmyndir.is/authenticate',
+        {},
+        {
+            auth: {
+                username: 'Heimir',
+                password: '$%SVU#atUGga$b6JrNSpH#g9Wfv',
+            },
         }
+    );
 
-        return response.data.token;
-    } catch (error) {
-        console.error('Error getting token:', error);
-        throw error;
+    if (!response.data.success) {
+        throw new Error(response.data.message || 'Auth failed');
     }
+
+    return response.data.token;
 };
 
 export default getToken;
