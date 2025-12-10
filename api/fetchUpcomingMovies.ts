@@ -2,11 +2,11 @@ import type { Movie } from '@/models/movies';
 import axios from 'axios';
 import getToken from './getToken';
 
-export const fetchMoviesApi = async (): Promise<Movie[]> => {
+export const fetchUpcomingMovies = async (): Promise<Movie[]> => {
     const token = await getToken();
 
     const response = await axios.get<Movie[]>(
-        'https://api.kvikmyndir.is/movies',
+        'https://api.kvikmyndir.is/upcoming',
         {
             params: { token },
         }
