@@ -50,4 +50,17 @@ export default StyleSheet.create({
         color: '#fff',
         fontSize: 17,
     },
+    scheduleContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 10,
+    },
+    timeButton: {
+        backgroundColor: '#494949ff',
+        width: 'auto',
+        height: 'auto',
+        padding: 6,
+        borderRadius: 10,
+    },
 });

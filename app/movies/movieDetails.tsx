@@ -14,9 +14,8 @@ import { useDispatch, useSelector } from 'react-redux';
 const MovieDetails = () => {
     const dispatch = useDispatch<AppDispatch>();
     const router = useRouter();
-
     const movies = useSelector((state: RootState) => state.movies.items);
-    // const th
+    const theaters = useSelector((state: RootState) => state.theater.items);
 
     const params = useLocalSearchParams<{
         movieId: string;
@@ -91,7 +90,15 @@ const MovieDetails = () => {
                     writers={names.writer}
                 />
 
-                <Showtime />
+                <View>
+                    {movieInfo.showtimes.map((show) => (
+                        <Showtime
+                            key={show.cinema.id}
+                            name={show.cinema.name}
+                            schedules={show.schedule}
+                        />
+                    ))}
+                </View>
             </View>
         </ScrollView>
     );

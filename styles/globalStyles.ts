@@ -13,6 +13,10 @@ export default StyleSheet.create({
         color: '#FFFFFF',
         fontSize: 16,
     },
+    defaultTitel: {
+        color: '#FFFFFF',
+        fontSize: 20,
+    },
     defaultBackgroundColor: {
         backgroundColor: '#0D0D0D',
     },
