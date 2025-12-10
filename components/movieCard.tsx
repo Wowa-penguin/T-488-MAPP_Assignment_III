@@ -1,6 +1,7 @@
 import { Genre } from '@/models/movies';
 import globalStyles from '@/styles/globalStyles';
 import styles from '@/styles/movies';
+
 import { useRouter } from 'expo-router';
 import { Image, Text, View } from 'react-native';
 import Button from './button';
