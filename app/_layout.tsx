@@ -29,6 +29,7 @@ export default function RootLayout() {
                     name="movies"
                     options={{
                         title: 'Movies',
+                        headerShown: false,
                         tabBarIcon: ({ color }) => (
                             <FontAwesome size={28} name="at" color={color} />
                         ),
