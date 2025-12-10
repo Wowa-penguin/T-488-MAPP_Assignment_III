@@ -9,7 +9,15 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const Index = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const cinemas = useSelector((state: RootState) => state.cinemas.items);
+    const cinemas = useSelector((state: RootState) => state.cinemas.cinemas);
+
+    const sortedCinemas = useMemo(
+        () =>
+            [...cinemas].sort((a, b) => 
+                a.name.localeCompare(b.name, 'is', { sensitivity: 'base' })
+            ),
+        [cinemas]
+    );
 
     return (
         <ScrollView>
