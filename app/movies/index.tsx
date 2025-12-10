@@ -7,22 +7,15 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const Index = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const movies = useSelector((state: RootState) => state.movies);
+    const movies = useSelector((state: RootState) => state.movies.items);
+
     return (
         <ScrollView
             style={[{ flex: 1 }, globalStyles.defaultBackgroundColor]}
             contentContainerStyle={{ flexGrow: 1 }}
         >
             <View style={styles.container}>
-                {movies.items.map((movie) => (
-                    // <Link
-                    //     key={movie._id}
-                    //     href={{
-                    //         pathname: '/movies/movieDetails',
-                    //         params: { movieId: movie._id },
-                    //     }}
-                    //     push
-                    // >
+                {movies.map((movie) => (
                     <MovieCard
                         key={movie._id}
                         _id={movie._id}
@@ -37,7 +30,6 @@ const Index = () => {
                         certificateIS={movie.certificateIS}
                         certificateImg={movie.certificateImg}
                     />
-                    // </Link>
                 ))}
             </View>
         </ScrollView>

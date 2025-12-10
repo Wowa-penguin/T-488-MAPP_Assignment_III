@@ -15,13 +15,14 @@ const MovieDetails = () => {
     const dispatch = useDispatch<AppDispatch>();
     const router = useRouter();
 
-    const movies = useSelector((state: RootState) => state.movies);
+    const movies = useSelector((state: RootState) => state.movies.items);
+    // const th
 
     const params = useLocalSearchParams<{
         movieId: string;
     }>();
 
-    const movieInfo: Movie | undefined = movies.items.find(
+    const movieInfo: Movie | undefined = movies.find(
         (movie) => movie._id === params.movieId
     );
 

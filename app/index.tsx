@@ -2,6 +2,7 @@ import Button from '@/components/button';
 import Loading from '@/components/loading';
 import { AppDispatch, RootState } from '@/store';
 import { fetchMovies } from '@/store/movieSlice';
+import { fetchTheaters } from '@/store/theaterSlice';
 import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,11 +16,11 @@ export default function HomeScreen() {
         error,
     } = useSelector((state: RootState) => state.movies);
 
-    //* #### Loading movies from api ####
-
+    //* #### Loading movies and theaters from api ####
     useEffect(() => {
         if (status === 'idle') {
             dispatch(fetchMovies());
+            dispatch(fetchTheaters());
         }
     }, [dispatch, status]);
 
