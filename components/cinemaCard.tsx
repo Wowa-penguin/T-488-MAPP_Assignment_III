@@ -1,16 +1,32 @@
 import styles from '@/styles/cinemas';
-import { Text, View } from 'react-native';
+import { useRouter } from 'expo-router';
+import { Text, TouchableOpacity } from 'react-native';
 
 type CinemaCardProps = {
     id: number;
     name: string;
+    website?: string;
 };
 
-const CinemaCard = ({ id, name }: CinemaCardProps) => {
+const CinemaCard = ({ id, name, website }: CinemaCardProps) => {
+    const router = useRouter();
+
+    const handlePress = () => {
+        router.push({
+            pathname: '/cinemas/[id]',
+            params: { id: String(id) },
+        });
+    };
+
     return (
-        <View style={styles.card}>
+        <TouchableOpacity style={styles.card} onPress={handlePress}>
             <Text style={styles.name}>{name}</Text>
-        </View>
+            {website ? (
+                <Text style={{ color: '#93c5fd', marginTop: 4 }}>
+                    {website}
+                </Text>
+            ) : null}
+        </TouchableOpacity>
     );
 };
 
