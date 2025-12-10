@@ -3,45 +3,23 @@ import Loading from '@/components/loading';
 import { AppDispatch, RootState } from '@/store';
 import { fetchTheaters } from '@/store/theaterSlice';
 import styles from '@/styles/cinemas';
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Index = () => {
     const dispatch = useDispatch<AppDispatch>();
-
-    const {
-        items: theater,
-        status,
-        error,
-    } = useSelector((state: RootState) => state.theater);
-
-    useEffect(() => {
-        if (status === 'idle') {
-            dispatch(fetchTheaters());
-        }
-    }, [dispatch, status]);
-
-    if (status === 'loading') {
-        return <Loading />;
-    }
-
-    if (status === 'failed') {
-        return (
-            <View>
-                <Text>Error: {error}</Text>
-            </View>
-        );
-    }
+    const cinemas = useSelector((state: RootState) => state.cinemas.items);
 
     return (
         <ScrollView>
             <View style={styles.container}>
-                {theater.map((cinema) => (
+                {sortedCinemas.map((cinema) => (
                     <CinemaCard
                         key={cinema.id}
                         id={cinema.id}
                         name={cinema.name}
+                        website={cinema.website}
                     />
                 ))}
             </View>

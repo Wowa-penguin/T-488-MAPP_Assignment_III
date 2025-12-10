@@ -105,6 +105,11 @@ export interface Showtime {
 export interface Cinema {
     id: number;
     name: string;
+    website?: string;
+    description?: string;
+    address?: string;
+    city?: string;
+    phone?: string;
 }
 
 export interface ShowtimeSchedule {
