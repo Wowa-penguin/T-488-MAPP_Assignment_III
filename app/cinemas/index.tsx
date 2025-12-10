@@ -1,18 +1,43 @@
 import CinemaCard from '@/components/cinemaCard';
+import Loading from '@/components/loading';
 import { AppDispatch, RootState } from '@/store';
+import { fetchTheaters } from '@/store/theaterSlice';
 import styles from '@/styles/cinemas';
-import React from 'react';
-import { ScrollView, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { ScrollView, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Index = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const cinemas = useSelector((state: RootState) => state.cinemas.cinemas);
+
+    const {
+        items: theater,
+        status,
+        error,
+    } = useSelector((state: RootState) => state.theater);
+
+    useEffect(() => {
+        if (status === 'idle') {
+            dispatch(fetchTheaters());
+        }
+    }, [dispatch, status]);
+
+    if (status === 'loading') {
+        return <Loading />;
+    }
+
+    if (status === 'failed') {
+        return (
+            <View>
+                <Text>Error: {error}</Text>
+            </View>
+        );
+    }
 
     return (
         <ScrollView>
             <View style={styles.container}>
-                {cinemas.map((cinema) => (
+                {theater.map((cinema) => (
                     <CinemaCard
                         key={cinema.id}
                         id={cinema.id}

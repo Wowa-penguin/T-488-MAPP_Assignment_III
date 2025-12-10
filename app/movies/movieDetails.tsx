@@ -1,5 +1,6 @@
 import ActorsAndDirectors from '@/components/actorsAndDirectors';
 import MovieInfoPosterAndPlot from '@/components/movieInfoPosterAndPlot';
+import Showtime from '@/components/showtime';
 import { Movie } from '@/models/movies';
 import { AppDispatch, RootState } from '@/store';
 import globalStyles from '@/styles/globalStyles';
@@ -89,7 +90,7 @@ const MovieDetails = () => {
                     writers={names.writer}
                 />
 
-                <Text>{movieInfo.year}</Text>
+                <Showtime />
             </View>
         </ScrollView>
     );
