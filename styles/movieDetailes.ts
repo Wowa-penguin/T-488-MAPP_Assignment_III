@@ -7,11 +7,47 @@ export default StyleSheet.create({
         gap: 10,
     },
     poster: {
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius: 10,
         width: 150,
         height: 200,
     },
-    genresContainer: {
+    posterAndPlotContainer: {
+        flexDirection: 'row',
+        padding: 8,
+        gap: 10,
+    },
+    certificateAndDuration: {
+        borderRadius: 10,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: '#393939ff',
+        padding: 10,
+    },
+    sectionContainer: {
+        padding: 4,
+        gap: 4,
+    },
+    titleOfSectionContainer: {
+        padding: 10,
+        borderRadius: 10,
+        backgroundColor: '#393939ff',
+    },
+    titleOfSection: {
+        color: '#fff',
+        fontSize: 20,
+        fontWeight: '600',
+    },
+    sectionContentContainer: {
+        padding: 10,
+        borderRadius: 10,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
+        backgroundColor: '#1A1A1A',
+    },
+    sectionText: {
+        color: '#fff',
+        fontSize: 17,
     },
 });

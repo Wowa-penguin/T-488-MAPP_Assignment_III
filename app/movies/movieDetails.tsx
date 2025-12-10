@@ -1,11 +1,13 @@
 import ActorsAndDirectors from '@/components/actorsAndDirectors';
+import MovieInfoPosterAndPlot from '@/components/movieInfoPosterAndPlot';
 import { Movie } from '@/models/movies';
 import { AppDispatch, RootState } from '@/store';
+import globalStyles from '@/styles/globalStyles';
 import styles from '@/styles/movieDetailes';
 import moviesStyles from '@/styles/movies';
 import { checkNames } from '@/utils/checkAndHandelNames';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Image, Text, View } from 'react-native';
+import { Image, ScrollView, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 const MovieDetails = () => {
@@ -18,12 +20,18 @@ const MovieDetails = () => {
         movieId: string;
     }>();
 
-    const findMovie: Movie[] = movies.items.filter(
+    const movieInfo: Movie | undefined = movies.items.find(
         (movie) => movie._id === params.movieId
     );
 
-    //* The movie that is being viewed
-    const movieInfo = findMovie[0];
+    if (!movieInfo) {
+        //* if _id is missing
+        return (
+            <View>
+                <Text>Error</Text>
+            </View>
+        );
+    }
 
     const names = checkNames({
         actors: movieInfo.actors_abridged,
@@ -31,74 +39,59 @@ const MovieDetails = () => {
         omdb: movieInfo.omdb[0],
     });
 
-    console.log(names);
-
     return (
-        <View style={styles.container}>
-            <View
-                style={{
-                    flexDirection: 'row',
-                    borderWidth: 1,
-                    borderColor: '#000',
-                    padding: 8,
-                    gap: 10,
-                }}
-            >
-                <Image
-                    style={styles.poster}
-                    source={{
-                        uri: movieInfo.poster,
-                    }}
+        <ScrollView
+            style={[{ flex: 1 }, globalStyles.defaultBackgroundColor]}
+            contentContainerStyle={{ flexGrow: 1 }}
+        >
+            <View style={styles.container}>
+                <MovieInfoPosterAndPlot
+                    poster={movieInfo.poster}
+                    title={movieInfo.title}
+                    plot={movieInfo.plot}
                 />
-                <View
-                    style={{
-                        flex: 1,
-                        gap: 8,
-                    }}
-                >
-                    <Text>{movieInfo.title}</Text>
-                    <Text style={{ flexShrink: 1 }}>{movieInfo.plot}</Text>
-                </View>
-            </View>
-            <View
-                style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    borderWidth: 1,
-                    borderColor: '#000',
-                }}
-            >
-                <View style={moviesStyles.certificateRow}>
-                    <Text>{movieInfo.certificateIS}</Text>
-                    <Image
-                        style={moviesStyles.certificateIcon}
-                        source={{
-                            uri: movieInfo.certificateImg,
-                        }}
-                    />
-                </View>
-                <Text>Duration {movieInfo.durationMinutes} minutes long</Text>
-            </View>
-            <View>
-                <Text>Genres</Text>
-                <View style={styles.genresContainer}>
-                    {movieInfo.genres.map((genre) => (
-                        <View key={genre.ID}>
-                            <Text>{genre.Name}</Text>
-                        </View>
-                    ))}
-                </View>
-            </View>
 
-            <ActorsAndDirectors
-                actors={names.actors}
-                directors={names.directors}
-                writers={names.writer}
-            />
+                <View style={styles.certificateAndDuration}>
+                    <View style={moviesStyles.certificateRow}>
+                        <Text style={globalStyles.defaultTextColor}>
+                            {movieInfo.certificateIS}
+                        </Text>
+                        <Image
+                            style={moviesStyles.certificateIcon}
+                            source={{
+                                uri: movieInfo.certificateImg,
+                            }}
+                        />
+                    </View>
+                    <Text style={globalStyles.defaultTextColor}>
+                        Duration {movieInfo.durationMinutes} minutes long
+                    </Text>
+                </View>
 
-            <Text>{movieInfo.year}</Text>
-        </View>
+                <View style={styles.sectionContainer}>
+                    <View style={styles.titleOfSectionContainer}>
+                        <Text style={styles.titleOfSection}>Genres</Text>
+                    </View>
+                    <View style={styles.sectionContentContainer}>
+                        {movieInfo.genres.map((genre) => (
+                            <View key={genre.ID}>
+                                <Text style={styles.sectionText}>
+                                    {genre.Name}
+                                </Text>
+                            </View>
+                        ))}
+                    </View>
+                </View>
+
+                <ActorsAndDirectors
+                    actors={names.actors}
+                    directors={names.directors}
+                    writers={names.writer}
+                />
+
+                <Text>{movieInfo.year}</Text>
+            </View>
+        </ScrollView>
     );
 };
 

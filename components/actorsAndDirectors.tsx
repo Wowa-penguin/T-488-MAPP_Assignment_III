@@ -1,3 +1,4 @@
+import styles from '@/styles/movieDetailes';
 import { Text, View } from 'react-native';
 
 type ActorsAndDirectorsProps = {
@@ -12,58 +13,55 @@ const ActorsAndDirectors = ({
     writers,
 }: ActorsAndDirectorsProps) => {
     return (
-        <View>
-            <Text>Actors</Text>
-            {actors ? (
-                <View
-                    style={{
-                        flexDirection: 'row',
-                        justifyContent: 'space-evenly',
-                    }}
-                >
-                    {actors.map((name) => (
-                        <View key={name}>
-                            <Text>{name}</Text>
-                        </View>
-                    ))}
+        <View style={{ gap: 10 }}>
+            <View style={styles.sectionContainer}>
+                <View style={styles.titleOfSectionContainer}>
+                    <Text style={styles.titleOfSection}>Actors</Text>
                 </View>
-            ) : (
-                <Text>N/A</Text>
-            )}
-            <Text>Directors</Text>
-            {directors ? (
-                <View
-                    style={{
-                        flexDirection: 'row',
-                        justifyContent: 'space-evenly',
-                    }}
-                >
-                    {directors.map((name) => (
-                        <View key={name}>
-                            <Text>{name}</Text>
-                        </View>
-                    ))}
+                {actors ? (
+                    <View style={styles.sectionContentContainer}>
+                        {actors.map((name) => (
+                            <View key={name}>
+                                <Text style={styles.sectionText}>{name}</Text>
+                            </View>
+                        ))}
+                    </View>
+                ) : (
+                    <Text>N/A</Text>
+                )}
+            </View>
+            <View style={styles.sectionContainer}>
+                <View style={styles.titleOfSectionContainer}>
+                    <Text style={styles.titleOfSection}>Directors</Text>
                 </View>
-            ) : (
-                <Text>N/A</Text>
-            )}
-            <Text>Writers</Text>
-            {writers ? (
-                <View
-                    style={{
-                        flexDirection: 'row',
-                        justifyContent: 'space-evenly',
-                    }}
-                >
-                    {writers.map((name) => (
-                        <View key={name}>
-                            <Text>{name}</Text>
-                        </View>
-                    ))}
+                {directors ? (
+                    <View style={styles.sectionContentContainer}>
+                        {directors.map((name) => (
+                            <View key={name}>
+                                <Text style={styles.sectionText}>{name}</Text>
+                            </View>
+                        ))}
+                    </View>
+                ) : (
+                    <Text>N/A</Text>
+                )}
+            </View>
+            <View style={styles.sectionContainer}>
+                <View style={styles.titleOfSectionContainer}>
+                    <Text style={styles.titleOfSection}>Writers</Text>
                 </View>
-            ) : (
-                <Text>N/A</Text>
-            )}
+                {writers ? (
+                    <View style={styles.sectionContentContainer}>
+                        {writers.map((name) => (
+                            <View key={name}>
+                                <Text style={styles.sectionText}>{name}</Text>
+                            </View>
+                        ))}
+                    </View>
+                ) : (
+                    <Text>N/A</Text>
+                )}
+            </View>
         </View>
     );
 };
