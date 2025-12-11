@@ -14,7 +14,7 @@ export default function RootLayout() {
 
                     tabBarStyle: Platform.select({
                         default: {
-                            backgroundColor: '#347',
+                            backgroundColor: '#124',
                             height: 100,
                         },
                     }),
@@ -24,8 +24,9 @@ export default function RootLayout() {
                     },
 
                     headerStyle: {
-                        backgroundColor: '#347',
+                        backgroundColor: '#124',
                     },
+                    headerTintColor: '#fff',
                 }}
             >
                 <Tabs.Screen
@@ -35,6 +36,7 @@ export default function RootLayout() {
                         tabBarIcon: ({ color }) => (
                             <FontAwesome size={32} name="home" color={color} />
                         ),
+                        tabBarActiveTintColor: '#faf',
                     }}
                 />
                 <Tabs.Screen
@@ -44,6 +46,7 @@ export default function RootLayout() {
                         tabBarIcon: ({ color }) => (
                             <FontAwesome size={32} name="cog" color={color} />
                         ),
+                        tabBarActiveTintColor: '#fba',
                     }}
                 />
                 <Tabs.Screen
@@ -58,6 +61,7 @@ export default function RootLayout() {
                                 color={color}
                             />
                         ),
+                        tabBarActiveTintColor: '#ffa',
                     }}
                 />
                 <Tabs.Screen
@@ -71,6 +75,7 @@ export default function RootLayout() {
                                 color={color}
                             />
                         ),
+                        tabBarActiveTintColor: '#aaf',
                     }}
                 />
                 <Tabs.Screen
@@ -84,6 +89,7 @@ export default function RootLayout() {
                                 color={color}
                             />
                         ),
+                        tabBarActiveTintColor: '#faa',
                     }}
                 />
             </Tabs>
