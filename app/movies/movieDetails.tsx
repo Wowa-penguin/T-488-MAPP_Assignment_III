@@ -40,7 +40,6 @@ const MovieDetails = () => {
         );
     }
 
-    // now movieInfo is definitely defined
     const isFavorite = favoriteIds.includes(movieInfo._id);
 
     const names = checkNames({
@@ -62,7 +61,6 @@ const MovieDetails = () => {
                 />
 
                 <View style={styles.certificateAndDuration}>
-                    {/* Age limit */}
                     <View style={moviesStyles.certificateRow}>
                         <Text style={globalStyles.defaultTextColor}>
                             {movieInfo.certificateIS}
@@ -76,21 +74,19 @@ const MovieDetails = () => {
                     <Text style={globalStyles.defaultTextColor}>
                         {movieInfo.year}
                     </Text>
-
-                    {/* Duration */}
                     <Text style={globalStyles.defaultTextColor}>
                         Duration {movieInfo.durationMinutes} minutes long
                     </Text>
                 </View>
 
                 <Button
-                    style={[globalStyles.defaultButton, { marginTop: 12, width: 210, height: 40, alignItems: 'center' }]}
+                    style={[globalStyles.defaultButton, { marginTop: 12, width: 50, height: 40, alignItems: 'center', justifyContent: 'center' }]}
                     onPress={() => dispatch(toggleFavorite(movieInfo._id))}
                 >
                     <Text style={globalStyles.defaultTextColor}>
                         {isFavorite
-                            ? 'Remove from favorites'
-                            : '❤️'}
+                            ? '❤️'
+                            : '🤍'}
                     </Text>
                 </Button>
 
