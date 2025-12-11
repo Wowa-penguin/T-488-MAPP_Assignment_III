@@ -21,8 +21,12 @@ export default function RootLayout() {
                     tabBarIconStyle: {
                         margin: 5,
                         height: 30,
+                        marginHorizontal: -10,
                     },
-
+                    tabBarLabelStyle: {
+                        fontSize: 14,
+                        fontWeight: '600',
+                    },
                     headerStyle: {
                         backgroundColor: '#124',
                     },
@@ -43,6 +47,7 @@ export default function RootLayout() {
                     name="cinemas"
                     options={{
                         title: 'Cinema',
+                        headerShown: false,
                         tabBarIcon: ({ color }) => (
                             <FontAwesome size={32} name="cog" color={color} />
                         ),
@@ -68,6 +73,7 @@ export default function RootLayout() {
                     name="upcoming"
                     options={{
                         title: 'Upcoming',
+                        headerShown: false,
                         tabBarIcon: ({ color }) => (
                             <MaterialIcons
                                 size={32}
@@ -82,6 +88,7 @@ export default function RootLayout() {
                     name="favourites"
                     options={{
                         title: 'Favorites',
+                        headerShown: false,
                         tabBarIcon: ({ color }) => (
                             <MaterialIcons
                                 size={32}

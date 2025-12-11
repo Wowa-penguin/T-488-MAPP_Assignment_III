@@ -1,18 +1,18 @@
 import ActorsAndDirectors from '@/components/actorsAndDirectors';
+import Button from '@/components/button';
 import Genres from '@/components/genres';
 import MovieInfoPosterAndPlot from '@/components/movieInfoPosterAndPlot';
 import Showtime from '@/components/showtime';
 import { Movie } from '@/models/movies';
-import { AppDispatch, RootState } from '@/store';
+import { RootState } from '@/store';
+import { toggleFavorite } from '@/store/favoritesSlice';
 import globalStyles from '@/styles/globalStyles';
 import styles from '@/styles/movieDetailes';
 import moviesStyles from '@/styles/movies';
 import { checkNames } from '@/utils/checkAndHandelNames';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import { Image, ScrollView, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleFavorite } from '@/store/favoritesSlice';
-import Button from '@/components/button';
 
 const MovieDetails = () => {
     const dispatch = useDispatch();
@@ -21,13 +21,18 @@ const MovieDetails = () => {
     );
 
     const movies = useSelector((state: RootState) => state.movies.items);
+    const upcomingMovies = useSelector(
+        (state: RootState) => state.upcoming.items
+    );
     const theaters = useSelector((state: RootState) => state.theater.items);
 
     const params = useLocalSearchParams<{
         movieId: string;
     }>();
 
-    const movieInfo: Movie | undefined = movies.find(
+    const allMovies = [...movies, ...upcomingMovies];
+
+    const movieInfo: Movie | undefined = allMovies.find(
         (movie) => movie._id === params.movieId
     );
 
@@ -80,13 +85,20 @@ const MovieDetails = () => {
                 </View>
 
                 <Button
-                    style={[globalStyles.defaultButton, { marginTop: 12, width: 50, height: 40, alignItems: 'center', justifyContent: 'center' }]}
+                    style={[
+                        globalStyles.defaultButton,
+                        {
+                            marginTop: 12,
+                            width: 50,
+                            height: 40,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        },
+                    ]}
                     onPress={() => dispatch(toggleFavorite(movieInfo._id))}
                 >
                     <Text style={globalStyles.defaultTextColor}>
-                        {isFavorite
-                            ? '❤️'
-                            : '🤍'}
+                        {isFavorite ? '❤️' : '🤍'}
                     </Text>
                 </Button>
 
@@ -107,15 +119,18 @@ const MovieDetails = () => {
                     writers={names.writer}
                 />
 
-                <View>
-                    {movieInfo.showtimes.map((show) => (
-                        <Showtime
-                            key={show.cinema.id}
-                            name={show.cinema.name}
-                            schedules={show.schedule}
-                        />
-                    ))}
-                </View>
+                {Array.isArray(movieInfo.showtimes) &&
+                    movieInfo.showtimes.length > 0 && (
+                        <View>
+                            {movieInfo.showtimes.map((show) => (
+                                <Showtime
+                                    key={show.cinema.id}
+                                    name={show.cinema.name}
+                                    schedules={show.schedule}
+                                />
+                            ))}
+                        </View>
+                    )}
             </View>
         </ScrollView>
     );

@@ -11,11 +11,11 @@ export default StyleSheet.create({
     },
     defaultTextColor: {
         color: '#FFFFFF',
-        fontSize: 16,
+        fontSize: 18,
     },
     defaultTitel: {
         color: '#FFFFFF',
-        fontSize: 20,
+        fontSize: 22,
     },
     defaultBackgroundColor: {
         backgroundColor: '#0D0D0D',

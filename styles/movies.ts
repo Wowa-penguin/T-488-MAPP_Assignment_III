@@ -13,9 +13,10 @@ export default StyleSheet.create({
         alignSelf: 'center',
         borderStyle: 'solid',
         borderWidth: 3,
-        width: '95%',
+        width: 'auto',
         height: 200,
-        paddingLeft: 3,
+        paddingLeft: 10,
+        paddingRight: 10,
         gap: 8,
         borderRadius: 20,
         borderColor: '#393939ff', //* border color for all movie cards
@@ -62,13 +63,14 @@ export default StyleSheet.create({
         alignItems: 'center',
     },
     input: {
-        height: 40,
+        height: 'auto',
         width: '70%',
         margin: 12,
         borderWidth: 5,
         borderColor: '#393939ff',
         backgroundColor: '#1A1A1A',
         padding: 20,
+        color: '#fff',
     },
     modalBackground: {
         flex: 1,
