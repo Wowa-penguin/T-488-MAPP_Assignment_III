@@ -11,10 +11,15 @@ import { checkNames } from '@/utils/checkAndHandelNames';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Image, ScrollView, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { toggleFavorite } from '@/store/favoritesSlice';
+import Button from '@/components/button';
 
 const MovieDetails = () => {
-    const dispatch = useDispatch<AppDispatch>();
-    const router = useRouter();
+    const dispatch = useDispatch();
+    const favoriteIds = useSelector(
+        (state: RootState) => state.favorites.movieIds
+    );
+
     const movies = useSelector((state: RootState) => state.movies.items);
     const theaters = useSelector((state: RootState) => state.theater.items);
 
@@ -27,13 +32,16 @@ const MovieDetails = () => {
     );
 
     if (!movieInfo) {
-        //* if _id is missing
+        // if _id is missing or movie not found
         return (
             <View>
                 <Text>Error</Text>
             </View>
         );
     }
+
+    // now movieInfo is definitely defined
+    const isFavorite = favoriteIds.includes(movieInfo._id);
 
     const names = checkNames({
         actors: movieInfo.actors_abridged,
@@ -74,6 +82,17 @@ const MovieDetails = () => {
                         Duration {movieInfo.durationMinutes} minutes long
                     </Text>
                 </View>
+
+                <Button
+                    style={[globalStyles.defaultButton, { marginTop: 12, width: 210, height: 40, alignItems: 'center' }]}
+                    onPress={() => dispatch(toggleFavorite(movieInfo._id))}
+                >
+                    <Text style={globalStyles.defaultTextColor}>
+                        {isFavorite
+                            ? 'Remove from favorites'
+                            : '❤️'}
+                    </Text>
+                </Button>
 
                 <View style={styles.sectionContainer}>
                     <View style={styles.titleOfSectionContainer}>
