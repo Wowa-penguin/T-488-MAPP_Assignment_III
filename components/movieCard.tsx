@@ -9,6 +9,7 @@ import Button from './button';
 type MovieCardProps = {
     _id: string;
     title: string;
+    year: string;
     poster: string;
     genres: Genre[];
     certificateIS: string;
@@ -18,6 +19,7 @@ type MovieCardProps = {
 const MovieCard = ({
     _id,
     title,
+    year,
     poster,
     genres,
     certificateIS,
@@ -41,20 +43,45 @@ const MovieCard = ({
                 }}
             />
             <View style={styles.cardContent}>
-                <Text
-                    style={[styles.movieTitle, globalStyles.defaultTextColor]}
-                >
-                    {title}
-                </Text>
-                <View style={styles.genresContainer}>
-                    {genres.map((genre) => (
-                        <View key={genre.ID}>
-                            <Text style={globalStyles.defaultTextColor}>
-                                {genre.Name}
-                            </Text>
-                        </View>
-                    ))}
+                <View>
+                    <Text
+                        style={[
+                            styles.movieTitle,
+                            globalStyles.defaultTextColor,
+                        ]}
+                    >
+                        {title}
+                    </Text>
+                    <Text style={globalStyles.defaultTextColor}>{year}</Text>
                 </View>
+
+                {genres.length >= 3 ? (
+                    <View style={styles.genresContainer}>
+                        {genres.map((genre) => (
+                            <View key={genre.ID}>
+                                <Text style={globalStyles.defaultTextColor}>
+                                    {genre.Name}
+                                </Text>
+                            </View>
+                        ))}
+                    </View>
+                ) : (
+                    <View
+                        style={[
+                            styles.genresContainer,
+                            { flexDirection: 'row' },
+                        ]}
+                    >
+                        {genres.map((genre) => (
+                            <View key={genre.ID}>
+                                <Text style={globalStyles.defaultTextColor}>
+                                    {genre.Name}
+                                </Text>
+                            </View>
+                        ))}
+                    </View>
+                )}
+
                 <View style={styles.footerRow}>
                     <View style={styles.certificateRow}>
                         <Text style={globalStyles.defaultTextColor}>
@@ -69,7 +96,10 @@ const MovieCard = ({
                     </View>
                     <Button
                         style={[
-                            { width: 'auto', height: 'auto' },
+                            {
+                                width: 'auto',
+                                height: 'auto',
+                            },
                             globalStyles.defaultButton,
                         ]}
                         textStyle={{ color: 'red' }}

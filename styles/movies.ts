@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     container: {
         gap: 15,
+        width: '100%',
         marginTop: 15,
         marginBottom: 15,
         alignSelf: 'center',
@@ -13,8 +14,9 @@ export default StyleSheet.create({
         borderStyle: 'solid',
         borderWidth: 3,
         width: '95%',
-        height: 150,
-        gap: 5,
+        height: 200,
+        paddingLeft: 3,
+        gap: 8,
         borderRadius: 20,
         borderColor: '#393939ff', //* border color for all movie cards
         backgroundColor: '#1A1A1A', //* background color for all movie cards
@@ -23,7 +25,6 @@ export default StyleSheet.create({
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10,
         width: 100,
-        marginLeft: 3,
         alignSelf: 'center',
         height: '96%',
     },
@@ -38,14 +39,14 @@ export default StyleSheet.create({
         width: 250,
     },
     genresContainer: {
-        flexDirection: 'row',
-        gap: 10,
+        flexWrap: 'wrap',
+        width: 'auto',
+        justifyContent: 'space-between',
     },
     footerRow: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginRight: 10,
     },
     certificateRow: {
         flexDirection: 'row',
