@@ -72,7 +72,13 @@ const FilterMenu = ({
                 <View>
                     <CertificateLogos onClick={(text) => handleClick(text)} />
                 </View>
-                <View style={{ flexDirection: 'row' }}>
+                <View
+                    style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        marginTop: 10,
+                    }}
+                >
                     <Button
                         style={globalStyles.defaultButton}
                         textStyle={globalStyles.defaultTextColor}
@@ -83,16 +89,16 @@ const FilterMenu = ({
                     <Button
                         style={globalStyles.defaultButton}
                         textStyle={globalStyles.defaultTextColor}
-                        onPress={handelApply}
+                        onPress={handelClear}
                     >
-                        Apply
+                        Clear filters
                     </Button>
                     <Button
                         style={globalStyles.defaultButton}
                         textStyle={globalStyles.defaultTextColor}
-                        onPress={handelClear}
+                        onPress={handelApply}
                     >
-                        Clear filters
+                        Apply
                     </Button>
                 </View>
             </View>
