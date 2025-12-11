@@ -21,12 +21,15 @@ export default function RootLayout() {
                     tabBarIconStyle: {
                         margin: 5,
                         height: 30,
+                        marginHorizontal: -10,
                     },
-
+                    tabBarLabelStyle: {
+                        fontSize: 14,
+                        fontWeight: '600',
+                    },
                     headerStyle: {
                         backgroundColor: '#124',
                     },
-
                     headerTintColor: '#fff',
                 }}
             >
