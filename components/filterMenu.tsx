@@ -3,17 +3,33 @@ import styles from '@/styles/movies';
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import Button from './button';
+import CertificateLogos from './certificateLogos';
 import Search from './search';
 
 type FilterMenuProps = {
     handelCansel: () => void;
+    onApply: (filters: {
+        rating: string;
+        actors: string;
+        directors: string;
+        pg: string;
+    }) => void;
 };
 
-const FilterMenu = ({ handelCansel }: FilterMenuProps) => {
+const FilterMenu = ({ handelCansel, onApply }: FilterMenuProps) => {
     const [rating, setRating] = useState('');
     const [actors, setActors] = useState('');
     const [directors, setDirectors] = useState('');
     const [pg, setPg] = useState('');
+
+    const handelApply = () => {
+        onApply({ rating, actors, directors, pg });
+        handelCansel();
+    };
+
+    const handleClick = (text: string) => {
+        setPg(text);
+    };
 
     return (
         <View style={styles.modalBackground}>
@@ -28,7 +44,6 @@ const FilterMenu = ({ handelCansel }: FilterMenuProps) => {
                         input={styles.input}
                     />
                 </View>
-
                 <View>
                     <Search
                         title="Actors"
@@ -50,22 +65,22 @@ const FilterMenu = ({ handelCansel }: FilterMenuProps) => {
                     />
                 </View>
                 <View>
-                    <Search
-                        title="PG rating"
-                        placeholder="Pg rating"
-                        value={pg}
-                        onChange={setPg}
-                        textStyle={globalStyles.defaultTextColor}
-                        input={styles.input}
-                    />
+                    <CertificateLogos onClick={(text) => handleClick(text)} />
                 </View>
-                <View>
+                <View style={{ flexDirection: 'row' }}>
                     <Button
                         style={globalStyles.defaultButton}
                         textStyle={globalStyles.defaultTextColor}
                         onPress={handelCansel}
                     >
                         Cansel
+                    </Button>
+                    <Button
+                        style={globalStyles.defaultButton}
+                        textStyle={globalStyles.defaultTextColor}
+                        onPress={handelApply}
+                    >
+                        Apply
                     </Button>
                 </View>
             </View>

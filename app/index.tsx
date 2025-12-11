@@ -13,6 +13,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export default function HomeScreen() {
     const [search, setSearch] = useState('');
+    const [filters, setFilters] = useState({
+        rating: '',
+        actors: '',
+        directors: '',
+        pg: '',
+    });
 
     //* #### Redux state ####
     const dispatch = useDispatch<AppDispatch>();
@@ -44,6 +50,15 @@ export default function HomeScreen() {
         );
     }
 
+    const handleFilters = (newFilters: {
+        rating: string;
+        actors: string;
+        directors: string;
+        pg: string;
+    }) => {
+        setFilters(newFilters);
+    };
+
     const filterMovies = movies.filter((movie) => {
         const title = movie.title.toLowerCase();
         const altTitle = movie.alternativeTitles?.toLowerCase() ?? '';
@@ -66,7 +81,10 @@ export default function HomeScreen() {
                 animationType="slide"
                 transparent={true}
             >
-                <FilterMenu handelCansel={() => setFilterModalVisible(false)} />
+                <FilterMenu
+                    handelCansel={() => setFilterModalVisible(false)}
+                    onApply={handleFilters}
+                />
             </Modal>
             <View
                 style={{
