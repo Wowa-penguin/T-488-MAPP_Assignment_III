@@ -12,6 +12,8 @@ import { Modal, ScrollView, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function HomeScreen() {
+    const [search, setSearch] = useState('');
+
     //* #### Redux state ####
     const dispatch = useDispatch<AppDispatch>();
     const {
@@ -42,6 +44,18 @@ export default function HomeScreen() {
         );
     }
 
+    const filterMovies = movies.filter((movie) => {
+        const title = movie.title.toLowerCase();
+        const altTitle = movie.alternativeTitles?.toLowerCase() ?? '';
+        const year = movie.year ?? '';
+
+        return (
+            title.includes(search.trim().toLowerCase()) ||
+            altTitle.includes(search.trim().toLowerCase()) ||
+            year.includes(search.trim().toLowerCase())
+        );
+    });
+
     return (
         <ScrollView
             style={[{ flex: 1 }, globalStyles.defaultBackgroundColor]}
@@ -56,16 +70,19 @@ export default function HomeScreen() {
             </Modal>
             <View
                 style={{
-                    borderWidth: 2,
-                    borderColor: 'red',
+                    marginTop: 20,
                     width: 'auto',
-                    height: 200,
+                    height: 100,
                 }}
             >
-                <Filter handleClick={() => setFilterModalVisible(true)} />
+                <Filter
+                    value={search}
+                    onChange={setSearch}
+                    handleClick={() => setFilterModalVisible(true)}
+                />
             </View>
             <View style={styles.container}>
-                {movies.map((movie) => (
+                {filterMovies.map((movie) => (
                     <MovieCard
                         key={movie._id}
                         _id={movie._id}

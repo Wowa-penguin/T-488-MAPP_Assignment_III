@@ -62,13 +62,14 @@ export default StyleSheet.create({
         alignItems: 'center',
     },
     input: {
-        height: 40,
+        height: 'auto',
         width: '70%',
         margin: 12,
         borderWidth: 5,
         borderColor: '#393939ff',
         backgroundColor: '#1A1A1A',
         padding: 20,
+        color: '#fff',
     },
     modalBackground: {
         flex: 1,

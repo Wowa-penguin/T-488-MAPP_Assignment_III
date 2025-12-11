@@ -11,7 +11,6 @@ type FilterMenuProps = {
 
 const FilterMenu = ({ handelCansel }: FilterMenuProps) => {
     const [rating, setRating] = useState('');
-    const [range, setRange] = useState('');
     const [actors, setActors] = useState('');
     const [directors, setDirectors] = useState('');
     const [pg, setPg] = useState('');
@@ -22,50 +21,41 @@ const FilterMenu = ({ handelCansel }: FilterMenuProps) => {
                 <View>
                     <Search
                         title="Rating"
-                        value={''}
-                        onChange={() => console.log('Her')}
+                        placeholder="Rating"
+                        value={rating}
+                        onChange={setRating}
                         textStyle={globalStyles.defaultTextColor}
-                        container={{}}
                         input={styles.input}
                     />
                 </View>
-                <View>
-                    <Search
-                        title="Range"
-                        value={''}
-                        onChange={() => console.log('Her')}
-                        textStyle={globalStyles.defaultTextColor}
-                        container={{}}
-                        input={styles.input}
-                    />
-                </View>
+
                 <View>
                     <Search
                         title="Actors"
-                        value={''}
-                        onChange={() => console.log('Her')}
+                        placeholder="Actors"
+                        value={actors}
+                        onChange={setActors}
                         textStyle={globalStyles.defaultTextColor}
-                        container={{}}
                         input={styles.input}
                     />
                 </View>
                 <View>
                     <Search
                         title="Directors"
-                        value={''}
-                        onChange={() => console.log('Her')}
+                        placeholder="Directors"
+                        value={directors}
+                        onChange={setDirectors}
                         textStyle={globalStyles.defaultTextColor}
-                        container={{}}
                         input={styles.input}
                     />
                 </View>
                 <View>
                     <Search
                         title="PG rating"
-                        value={''}
-                        onChange={() => console.log('Her')}
+                        placeholder="Pg rating"
+                        value={pg}
+                        onChange={setPg}
                         textStyle={globalStyles.defaultTextColor}
-                        container={{}}
                         input={styles.input}
                     />
                 </View>
