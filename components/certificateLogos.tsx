@@ -20,7 +20,7 @@ const CertificateLogos = ({ onClick }: CertificateLogosProps) => {
                     <Image source={require('@/assets/certificateLogo/l.png')} />
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => onClick('6. ára')}>
+                <TouchableOpacity onPress={() => onClick('6 ára')}>
                     <Image source={require('@/assets/certificateLogo/6.png')} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => onClick('9 ára')}>
