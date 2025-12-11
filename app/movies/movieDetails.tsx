@@ -24,7 +24,6 @@ const MovieDetails = () => {
     const upcomingMovies = useSelector(
         (state: RootState) => state.upcoming.items
     );
-    const theaters = useSelector((state: RootState) => state.theater.items);
 
     const params = useLocalSearchParams<{
         movieId: string;
