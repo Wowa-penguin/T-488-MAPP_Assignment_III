@@ -1,5 +1,5 @@
 import styles from '@/styles/movieDetailes';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import DisplayNames from './displayNames';
 
 type ActorsAndDirectorsProps = {
@@ -16,22 +16,13 @@ const ActorsAndDirectors = ({
     return (
         <View style={{ gap: 10 }}>
             <View style={styles.sectionContainer}>
-                <View style={styles.titleOfSectionContainer}>
-                    <Text style={styles.titleOfSection}>Actors</Text>
-                </View>
-                <DisplayNames names={actors} />
+                <DisplayNames title={'Actors'} names={actors} />
             </View>
             <View style={styles.sectionContainer}>
-                <View style={styles.titleOfSectionContainer}>
-                    <Text style={styles.titleOfSection}>Directors</Text>
-                </View>
-                <DisplayNames names={directors} />
+                <DisplayNames title={'Directors'} names={directors} />
             </View>
             <View style={styles.sectionContainer}>
-                <View style={styles.titleOfSectionContainer}>
-                    <Text style={styles.titleOfSection}>Writers</Text>
-                </View>
-                <DisplayNames names={writers} />
+                <DisplayNames title={'Writers'} names={writers} />
             </View>
         </View>
     );

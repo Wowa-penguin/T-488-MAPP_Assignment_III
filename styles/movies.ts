@@ -39,7 +39,6 @@ export default StyleSheet.create({
         width: 250,
     },
     genresContainer: {
-        flexWrap: 'wrap',
         width: 'auto',
         justifyContent: 'space-evenly',
         gap: 5,
@@ -57,5 +56,32 @@ export default StyleSheet.create({
     certificateIcon: {
         height: 23,
         width: 23,
+    },
+    filterContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    input: {
+        height: 40,
+        width: '70%',
+        margin: 12,
+        borderWidth: 5,
+        borderColor: '#393939ff',
+        backgroundColor: '#1A1A1A',
+        padding: 20,
+    },
+    modalBackground: {
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    modalContent: {
+        width: '85%',
+        height: '60%',
+        backgroundColor: '#0D0D0D',
+        padding: 20,
+        borderRadius: 12,
+        elevation: 10,
     },
 });
