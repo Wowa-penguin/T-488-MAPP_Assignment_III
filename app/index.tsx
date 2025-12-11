@@ -59,17 +59,59 @@ export default function HomeScreen() {
         setFilters(newFilters);
     };
 
-    const filterMovies = movies.filter((movie) => {
-        const title = movie.title.toLowerCase();
-        const altTitle = movie.alternativeTitles?.toLowerCase() ?? '';
-        const year = movie.year ?? '';
+    const searchLower = search.toLowerCase();
+    const ratingLower = filters.rating;
+    const actorsLower = filters.actors.toLowerCase();
+    const directorsLower = filters.directors.toLowerCase();
+    const pgFilter = filters.pg;
 
-        return (
-            title.includes(search.trim().toLowerCase()) ||
-            altTitle.includes(search.trim().toLowerCase()) ||
-            year.includes(search.trim().toLowerCase())
-        );
+    const filterMovies = movies.filter((movie) => {
+        if (searchLower) {
+            const matchesSearch =
+                movie.title.toLowerCase().includes(searchLower) ||
+                movie.alternativeTitles.toLowerCase().includes(searchLower) ||
+                movie.year.includes(searchLower);
+
+            if (!matchesSearch) return false;
+        }
+
+        if (ratingLower) {
+            const imdbRating = movie.ratings.imdb;
+            const rottenRating = movie.ratings.rotten_critics;
+
+            if (
+                parseFloat(imdbRating) <= parseFloat(ratingLower) ||
+                parseFloat(rottenRating) <= parseFloat(ratingLower)
+            )
+                return false;
+        }
+
+        if (actorsLower) {
+            const matchesActor = movie.actors_abridged.some((a) =>
+                a.name.toLowerCase().includes(actorsLower)
+            );
+            if (!matchesActor) return false;
+        }
+
+        if (directorsLower) {
+            const matchesDirector = movie.directors_abridged.some((d) =>
+                d.name.toLowerCase().includes(directorsLower)
+            );
+            if (!matchesDirector) return false;
+        }
+
+        if (pgFilter) {
+            const cert = movie.certificateIS ?? '';
+            if (cert !== pgFilter) return false;
+        }
+
+        return true;
     });
+
+    const clear = () => {
+        setFilters({ rating: '', actors: '', directors: '', pg: '' });
+        setFilterModalVisible(false);
+    };
 
     return (
         <ScrollView
@@ -84,6 +126,7 @@ export default function HomeScreen() {
                 <FilterMenu
                     handelCansel={() => setFilterModalVisible(false)}
                     onApply={handleFilters}
+                    handelClear={clear}
                 />
             </Modal>
             <View
