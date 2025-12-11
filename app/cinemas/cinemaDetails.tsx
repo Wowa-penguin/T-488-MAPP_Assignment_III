@@ -160,17 +160,16 @@ const CinemaDetails = () => {
 
                         return (
                             <>
-                                <View key={movie.id}>
-                                    <MovieCard
-                                        _id={movie._id}
-                                        title={movie.title}
-                                        poster={movie.poster}
-                                        year={movie.year}
-                                        genres={movie.genres}
-                                        certificateIS={movie.certificateIS}
-                                        certificateImg={movie.certificateImg}
-                                    />
-                                </View>
+                                <MovieCard
+                                    key={movie._id}
+                                    _id={movie._id}
+                                    title={movie.title}
+                                    poster={movie.poster}
+                                    year={movie.year}
+                                    genres={movie.genres}
+                                    certificateIS={movie.certificateIS}
+                                    certificateImg={movie.certificateImg}
+                                />
                                 {showtime && (
                                     <Showtime
                                         name="Sýningartímar"
