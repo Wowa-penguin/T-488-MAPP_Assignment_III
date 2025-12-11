@@ -54,7 +54,6 @@ const MovieDetails = () => {
                 />
 
                 <View style={styles.certificateAndDuration}>
-                    {/* Age limit */}
                     <View style={moviesStyles.certificateRow}>
                         <Text style={globalStyles.defaultTextColor}>
                             {movieInfo.certificateIS}
@@ -69,7 +68,6 @@ const MovieDetails = () => {
                         {movieInfo.year}
                     </Text>
 
-                    {/* Duration */}
                     <Text style={globalStyles.defaultTextColor}>
                         Duration {movieInfo.durationMinutes} minutes long
                     </Text>
