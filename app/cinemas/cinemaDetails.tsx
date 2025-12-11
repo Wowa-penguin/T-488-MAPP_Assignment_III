@@ -1,40 +1,12 @@
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 import { RootState } from '@/store';
 import globalStyles from '@/styles/globalStyles';
-import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useMemo } from 'react';
-import {
-    Image,
-    Linking,
-    ScrollView,
-    Text,
-    TouchableOpacity,
-    View,
-} from 'react-native';
-import { useSelector } from 'react-redux';
-=======
-=======
->>>>>>> Stashed changes
-import React, { useMemo } from 'react';
-import { ScrollView, Text, View, TouchableOpacity } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
-import { useSelector } from 'react-redux';
-
-import { RootState } from '@/store';
-<<<<<<< Updated upstream
 import React, { useMemo } from 'react';
-import { ScrollView, Text, View, TouchableOpacity } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { useSelector } from 'react-redux';
 
-import { RootState } from '@/store';
-=======
->>>>>>> Stashed changes
-import globalStyles from '@/styles/globalStyles';
-
-import { openLink } from '@/utils/openLink';
 import { getCinemaMovies } from '@/utils/cinemaMovies';
+import { openLink } from '@/utils/openLink';
 
 import MovieCard from '@/components/movieCard';
 import Showtime from '@/components/showtime';
@@ -52,13 +24,6 @@ const CinemaDetails = () => {
         () => getCinemaMovies(movies, id),
         [movies, id]
     );
-<<<<<<< Updated upstream
-    const cinemaMovies = useMemo(
-        () => getCinemaMovies(movies, id),
-        [movies, id]
-    );
-=======
->>>>>>> Stashed changes
 
     if (!theater) {
         return (
@@ -90,10 +55,6 @@ const CinemaDetails = () => {
             </Text>
 
             {theater.website && (
-<<<<<<< Updated upstream
-            {theater.website && (
-=======
->>>>>>> Stashed changes
                 <TouchableOpacity onPress={() => openLink(theater.website)}>
                     <Text
                         style={{
@@ -106,15 +67,8 @@ const CinemaDetails = () => {
                     </Text>
                 </TouchableOpacity>
             )}
-<<<<<<< Updated upstream
-            )}
 
             {theater.description && (
-            {theater.description && (
-=======
-
-            {theater.description && (
->>>>>>> Stashed changes
                 <Text
                     style={[
                         globalStyles.defaultTextColor,
@@ -124,10 +78,6 @@ const CinemaDetails = () => {
                     {theater.description}
                 </Text>
             )}
-<<<<<<< Updated upstream
-            )}
-=======
->>>>>>> Stashed changes
 
             <Text
                 style={[
@@ -140,12 +90,7 @@ const CinemaDetails = () => {
             <Text style={[globalStyles.defaultTextColor, { marginBottom: 12 }]}>
                 {theater.address}, {theater.city}
             </Text>
-
             {theater.phone && (
-<<<<<<< Updated upstream
-            {theater.phone && (
-=======
->>>>>>> Stashed changes
                 <>
                     <Text
                         style={[
@@ -169,15 +114,8 @@ const CinemaDetails = () => {
                     </TouchableOpacity>
                 </>
             )}
-<<<<<<< Updated upstream
-            )}
 
             {theater.google_map && (
-            {theater.google_map && (
-=======
-
-            {theater.google_map && (
->>>>>>> Stashed changes
                 <TouchableOpacity onPress={() => openLink(theater.google_map)}>
                     <Text
                         style={{
@@ -190,10 +128,6 @@ const CinemaDetails = () => {
                     </Text>
                 </TouchableOpacity>
             )}
-<<<<<<< Updated upstream
-            )}
-=======
->>>>>>> Stashed changes
 
             <Text
                 style={[
@@ -210,17 +144,9 @@ const CinemaDetails = () => {
                 </Text>
             ) : (
                 <View style={{ gap: 20 }}>
-<<<<<<< Updated upstream
-                <View style={{ gap: 20 }}>
                     {cinemaMovies.map((movie) => {
                         const showtime = movie.showtimes.find(
                             (s: any) => s.cinema.id === id
-                            (s: any) => s.cinema.id === id
-=======
-                    {cinemaMovies.map((movie) => {
-                        const showtime = movie.showtimes.find(
-                            (s: any) => s.cinema.id === id
->>>>>>> Stashed changes
                         );
 
                         return (
@@ -229,6 +155,7 @@ const CinemaDetails = () => {
                                     _id={movie._id}
                                     title={movie.title}
                                     poster={movie.poster}
+                                    year={movie.year}
                                     genres={movie.genres}
                                     certificateIS={movie.certificateIS}
                                     certificateImg={movie.certificateImg}
