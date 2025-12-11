@@ -26,6 +26,7 @@ export default function RootLayout() {
                     headerStyle: {
                         backgroundColor: '#124',
                     },
+                    heade
                     headerTintColor: '#fff',
                 }}
             >
@@ -43,6 +44,7 @@ export default function RootLayout() {
                     name="cinemas"
                     options={{
                         title: 'Cinema',
+                        headerShown: false,
                         tabBarIcon: ({ color }) => (
                             <FontAwesome size={32} name="cog" color={color} />
                         ),
@@ -68,6 +70,7 @@ export default function RootLayout() {
                     name="upcoming"
                     options={{
                         title: 'Upcoming',
+                        headerShown: false,
                         tabBarIcon: ({ color }) => (
                             <MaterialIcons
                                 size={32}
@@ -82,6 +85,7 @@ export default function RootLayout() {
                     name="favourites"
                     options={{
                         title: 'Favorites',
+                        headerShown: false,
                         tabBarIcon: ({ color }) => (
                             <MaterialIcons
                                 size={32}

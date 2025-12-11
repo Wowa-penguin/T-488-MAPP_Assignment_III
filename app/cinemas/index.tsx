@@ -3,6 +3,7 @@ import Loading from '@/components/loading';
 import { AppDispatch, RootState } from '@/store';
 import { fetchTheaters } from '@/store/theaterSlice';
 import styles from '@/styles/cinemas';
+import globalStyles from '@/styles/globalStyles';
 import React, { useEffect, useMemo } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -35,15 +36,15 @@ const Index = () => {
     }
 
     const sortedTheaters = useMemo(
-        () =>
-            [...theater].sort((a, b) =>
-                a.name.localeCompare(b.name)
-            ),
+        () => [...theater].sort((a, b) => a.name.localeCompare(b.name)),
         [theater]
     );
 
     return (
-        <ScrollView>
+        <ScrollView
+            style={[{ flex: 1 }, globalStyles.defaultBackgroundColor]}
+            contentContainerStyle={{ flexGrow: 1 }}
+        >
             <View style={styles.container}>
                 {sortedTheaters.map((cinema) => (
                     <CinemaCard
