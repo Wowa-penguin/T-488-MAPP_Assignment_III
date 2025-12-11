@@ -41,10 +41,11 @@ export default function HomeScreen() {
     const [filterModalVisible, setFilterModalVisible] = useState(false);
 
     if (status === 'loading') {
-        return <Loading />;
+        return <Loading />; // todo:
     }
 
     if (status === 'failed') {
+        // todo:
         return (
             <View>
                 <Text>Error: {error}</Text>

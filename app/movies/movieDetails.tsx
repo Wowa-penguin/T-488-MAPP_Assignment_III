@@ -84,16 +84,7 @@ const MovieDetails = () => {
                 </View>
 
                 <Button
-                    style={[
-                        globalStyles.defaultButton,
-                        {
-                            marginTop: 12,
-                            width: 50,
-                            height: 40,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                        },
-                    ]}
+                    style={[globalStyles.defaultButton, styles.favoriteButton]}
                     onPress={() => dispatch(toggleFavorite(movieInfo._id))}
                 >
                     <Text style={globalStyles.defaultTextColor}>

@@ -62,4 +62,11 @@ export default StyleSheet.create({
         padding: 6,
         borderRadius: 10,
     },
+    favoriteButton: {
+        marginTop: 12,
+        width: 50,
+        height: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 });
