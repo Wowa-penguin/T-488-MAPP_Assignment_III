@@ -1,16 +1,26 @@
 import globalStyles from '@/styles/globalStyles';
 import styles from '@/styles/movies';
-import { TextInput, View } from 'react-native';
+import { View } from 'react-native';
 import Button from './button';
+import Search from './search';
 
 type FilterProps = {
     handleClick: () => void;
+    value: string;
+    onChange: (text: string) => void;
 };
 
-const Filter = ({ handleClick }: FilterProps) => {
+const Filter = ({ handleClick, value, onChange }: FilterProps) => {
     return (
         <View style={styles.filterContainer}>
-            <TextInput style={styles.input} />
+            <Search
+                title={''}
+                placeholder="Filter: Name or year"
+                value={value}
+                onChange={onChange}
+                textStyle={globalStyles.defaultTextColor}
+                input={styles.input}
+            />
             <Button
                 style={[
                     {
