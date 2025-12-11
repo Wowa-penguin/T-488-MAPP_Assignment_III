@@ -1,10 +1,14 @@
-import Button from '@/components/button';
+import Filter from '@/components/filter';
+import FilterMenu from '@/components/filterMenu';
 import Loading from '@/components/loading';
+import MovieCard from '@/components/movieCard';
 import { AppDispatch, RootState } from '@/store';
 import { fetchMovies } from '@/store/movieSlice';
 import { fetchTheaters } from '@/store/theaterSlice';
-import React, { useEffect } from 'react';
-import { Text, View } from 'react-native';
+import globalStyles from '@/styles/globalStyles';
+import styles from '@/styles/movies';
+import React, { useEffect, useState } from 'react';
+import { Modal, ScrollView, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function HomeScreen() {
@@ -24,6 +28,8 @@ export default function HomeScreen() {
         }
     }, [dispatch, status]);
 
+    const [filterModalVisible, setFilterModalVisible] = useState(false);
+
     if (status === 'loading') {
         return <Loading />;
     }
@@ -37,22 +43,46 @@ export default function HomeScreen() {
     }
 
     return (
-        <View>
-            <Button
-                style={{
-                    backgroundColor: '#4A90E2',
-                    padding: 12,
-                    borderRadius: 8,
-                    alignItems: 'center',
-                }}
-                textStyle={{
-                    color: '#fff',
-                    fontWeight: '600',
-                }}
-                onPress={() => console.log('Pressed!')}
+        <ScrollView
+            style={[{ flex: 1 }, globalStyles.defaultBackgroundColor]}
+            contentContainerStyle={{ flexGrow: 1 }}
+        >
+            <Modal
+                visible={filterModalVisible}
+                animationType="slide"
+                transparent={true}
             >
-                Save
-            </Button>
-        </View>
+                <FilterMenu />
+            </Modal>
+            <View
+                style={{
+                    borderWidth: 2,
+                    borderColor: 'red',
+                    width: 'auto',
+                    height: 200,
+                }}
+            >
+                <Filter handleClick={() => setFilterModalVisible(true)} />
+            </View>
+            <View style={styles.container}>
+                {movies.map((movie) => (
+                    <MovieCard
+                        key={movie._id}
+                        _id={movie._id}
+                        title={
+                            movie.alternativeTitles.length <
+                                movie.title.length && movie.alternativeTitles
+                                ? movie.alternativeTitles
+                                : movie.title
+                        }
+                        year={movie.year}
+                        poster={movie.poster}
+                        genres={movie.genres}
+                        certificateIS={movie.certificateIS}
+                        certificateImg={movie.certificateImg}
+                    />
+                ))}
+            </View>
+        </ScrollView>
     );
 }

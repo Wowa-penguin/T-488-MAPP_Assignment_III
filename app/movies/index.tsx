@@ -7,7 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const Index = () => {
     const dispatch = useDispatch<AppDispatch>();
+
     const movies = useSelector((state: RootState) => state.movies.items);
+
     return (
         <ScrollView
             style={[{ flex: 1 }, globalStyles.defaultBackgroundColor]}
