@@ -42,7 +42,6 @@ export default StyleSheet.create({
     sectionContentContainer: {
         padding: 10,
         borderRadius: 10,
-        // flexDirection: 'row',
         justifyContent: 'space-evenly',
         backgroundColor: '#1A1A1A',
     },

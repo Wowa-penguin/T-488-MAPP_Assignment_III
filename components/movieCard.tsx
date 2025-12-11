@@ -63,15 +63,23 @@ const MovieCard = ({
 
                 <View style={styles.footerRow}>
                     <View style={styles.certificateRow}>
-                        <Text style={globalStyles.defaultTextColor}>
-                            {certificateIS}
-                        </Text>
-                        <Image
-                            style={styles.certificateIcon}
-                            source={{
-                                uri: certificateImg,
-                            }}
-                        />
+                        {certificateIS && certificateImg ? (
+                            <>
+                                <Text style={globalStyles.defaultTextColor}>
+                                    {certificateIS}
+                                </Text>
+                                <Image
+                                    style={styles.certificateIcon}
+                                    source={{
+                                        uri: certificateImg,
+                                    }}
+                                />
+                            </>
+                        ) : (
+                            <Text style={globalStyles.defaultTextColor}>
+                                * Á ekki Við
+                            </Text>
+                        )}
                     </View>
                     <Button
                         style={[

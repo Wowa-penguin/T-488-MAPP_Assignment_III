@@ -39,7 +39,6 @@ export default StyleSheet.create({
         width: 250,
     },
     genresContainer: {
-        flexWrap: 'wrap',
         width: 'auto',
         justifyContent: 'space-evenly',
         gap: 5,

@@ -10,23 +10,19 @@ type GenresProps = {
 const Genres = ({ genres, genresContainer, textStyels }: GenresProps) => {
     return (
         <>
-            {genres.length >= 3 ? (
-                <View style={genresContainer}>
-                    {genres.map((genre) => (
-                        <View key={genre.ID}>
-                            <Text style={textStyels}>{genre.Name}</Text>
-                        </View>
-                    ))}
-                </View>
-            ) : (
-                <View style={[genresContainer, { flexDirection: 'row' }]}>
-                    {genres.map((genre) => (
-                        <View key={genre.ID}>
-                            <Text style={textStyels}>{genre.Name}</Text>
-                        </View>
-                    ))}
-                </View>
-            )}
+            <View
+                style={
+                    genres && genres.length >= 3
+                        ? genresContainer
+                        : [genresContainer, { flexDirection: 'row' }]
+                }
+            >
+                {genres.map((genre) => (
+                    <View key={genre.ID}>
+                        <Text style={textStyels}>{genre.Name}</Text>
+                    </View>
+                ))}
+            </View>
         </>
     );
 };
