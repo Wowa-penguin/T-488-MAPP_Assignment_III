@@ -1,3 +1,5 @@
+import Button from '@/components/button';
+import DisplayFilters from '@/components/displayFilters';
 import Filter from '@/components/filter';
 import FilterMenu from '@/components/filterMenu';
 import Loading from '@/components/loading';
@@ -126,7 +128,6 @@ export default function HomeScreen() {
                 <FilterMenu
                     handelCansel={() => setFilterModalVisible(false)}
                     onApply={handleFilters}
-                    handelClear={clear}
                 />
             </Modal>
             <View
@@ -142,6 +143,30 @@ export default function HomeScreen() {
                     handleClick={() => setFilterModalVisible(true)}
                 />
             </View>
+            {filters.actors ||
+            filters.directors ||
+            filters.pg ||
+            filters.rating ? (
+                <>
+                    <DisplayFilters filters={filters} />
+                    <Button
+                        style={[
+                            globalStyles.defaultButton,
+                            {
+                                width: '30%',
+                                alignItems: 'center',
+                                alignSelf: 'center',
+                            },
+                        ]}
+                        textStyle={globalStyles.defaultTextColor}
+                        onPress={clear}
+                    >
+                        Clear filters
+                    </Button>
+                </>
+            ) : (
+                <></>
+            )}
             <View style={styles.container}>
                 {filterMovies.map((movie) => (
                     <MovieCard
