@@ -1,16 +1,16 @@
-import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
+import globalStyles from '@/styles/globalStyles';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import React, { useMemo } from 'react';
 import {
+    Image,
+    Linking,
     ScrollView,
     Text,
-    View,
     TouchableOpacity,
-    Linking,
-    Image,
+    View,
 } from 'react-native';
-import globalStyles from '@/styles/globalStyles';
-import React, { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 
 const CinemaDetails = () => {
     const { cinemaId } = useLocalSearchParams<{ cinemaId?: string }>();
@@ -112,9 +112,7 @@ const CinemaDetails = () => {
             >
                 Heimilisfang:
             </Text>
-            <Text
-                style={[globalStyles.defaultTextColor, { marginBottom: 12 }]}
-            >
+            <Text style={[globalStyles.defaultTextColor, { marginBottom: 12 }]}>
                 {theater.address}, {theater.city}
             </Text>
 
@@ -249,8 +247,7 @@ const CinemaDetails = () => {
                                             <View>
                                                 <Text
                                                     style={[
-                                                        globalStyles
-                                                            .defaultTextColor,
+                                                        globalStyles.defaultTextColor,
                                                         {
                                                             fontWeight: '600',
                                                             marginBottom: 4,
@@ -293,9 +290,7 @@ const CinemaDetails = () => {
                                                                         },
                                                                     ]}
                                                                 >
-                                                                    {
-                                                                        sch.time
-                                                                    }
+                                                                    {sch.time}
                                                                 </Text>
                                                             </TouchableOpacity>
                                                         )

@@ -12,9 +12,10 @@ const CinemaCard = ({ id, name, website }: CinemaCardProps) => {
     const router = useRouter();
 
     const handlePress = () => {
-        router.push(
-            `/cinemas/cinemaDetails?cinemaId=${id}` as never
-        );
+        router.push({
+            pathname: '/cinemas/cinemaDetails',
+            params: { cinemaId: id },
+        });
     };
 
     return (
