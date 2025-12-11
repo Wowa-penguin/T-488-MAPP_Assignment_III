@@ -10,6 +10,7 @@ const layout = () => {
                 headerTintColor: '#fff',
                 headerTitleStyle: {
                     fontWeight: 'bold',
+                    fontSize: 22,
                 },
             }}
         />

@@ -16,7 +16,7 @@ export default StyleSheet.create({
         padding: 16,
         borderRadius: 15,
         borderWidth: 3,
-        borderColor: '#124',
+        borderColor: '#136',
         overflow: 'hidden',
         position: 'relative',
     },
