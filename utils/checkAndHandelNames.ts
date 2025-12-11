@@ -17,18 +17,24 @@ export const checkNames = ({ actors, directors, omdb }: NamesParams) => {
 
     if (actors && actors.length > 0) {
         payload.actors = actors.map((actor) => actor.name);
-    } else {
+    } else if (omdb.Actors) {
         payload.actors = omdb.Actors.split(',').map((name) => name.trim());
+    } else {
+        payload.actors = ['None'];
     }
 
     if (directors && directors.length > 0) {
         payload.directors = directors.map((director) => director.name);
-    } else {
+    } else if (omdb.Director) {
         payload.directors = omdb.Director.split(',').map((name) => name.trim());
+    } else {
+        payload.directors = ['None'];
     }
 
     if (omdb && omdb.Writer) {
         payload.writer = omdb.Writer.split(',').map((name) => name.trim());
+    } else {
+        payload.writer = ['None'];
     }
 
     return payload;
