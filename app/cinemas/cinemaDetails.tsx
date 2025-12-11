@@ -159,8 +159,9 @@ const CinemaDetails = () => {
                         );
 
                         return (
-                            <View key={movie.id}>
+                            <>
                                 <MovieCard
+                                    key={movie.id}
                                     _id={movie._id}
                                     title={movie.title}
                                     poster={movie.poster}
@@ -175,7 +176,7 @@ const CinemaDetails = () => {
                                         schedules={showtime.schedule}
                                     />
                                 )}
-                            </View>
+                            </>
                         );
                     })}
                 </View>
