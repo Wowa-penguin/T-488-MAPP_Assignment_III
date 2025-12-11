@@ -61,6 +61,7 @@ export default function RootLayout() {
                 <Tabs.Screen
                     name="movies"
                     options={{
+                        href: null,
                         title: 'Movies',
                         headerShown: false,
                         tabBarIcon: ({ color }) => (
