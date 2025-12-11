@@ -1,4 +1,5 @@
 import ActorsAndDirectors from '@/components/actorsAndDirectors';
+import Genres from '@/components/genres';
 import MovieInfoPosterAndPlot from '@/components/movieInfoPosterAndPlot';
 import Showtime from '@/components/showtime';
 import { Movie } from '@/models/movies';
@@ -73,15 +74,11 @@ const MovieDetails = () => {
                     <View style={styles.titleOfSectionContainer}>
                         <Text style={styles.titleOfSection}>Genres</Text>
                     </View>
-                    <View style={styles.sectionContentContainer}>
-                        {movieInfo.genres.map((genre) => (
-                            <View key={genre.ID}>
-                                <Text style={styles.sectionText}>
-                                    {genre.Name}
-                                </Text>
-                            </View>
-                        ))}
-                    </View>
+                    <Genres
+                        genres={movieInfo.genres}
+                        genresContainer={styles.sectionContentContainer}
+                        textStyels={styles.sectionText}
+                    />
                 </View>
 
                 <ActorsAndDirectors

@@ -41,7 +41,8 @@ export default StyleSheet.create({
     genresContainer: {
         flexWrap: 'wrap',
         width: 'auto',
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
+        gap: 5,
     },
     footerRow: {
         flexDirection: 'row',

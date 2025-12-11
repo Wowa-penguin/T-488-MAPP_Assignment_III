@@ -1,5 +1,6 @@
 import styles from '@/styles/movieDetailes';
 import { Text, View } from 'react-native';
+import DisplayNames from './displayNames';
 
 type ActorsAndDirectorsProps = {
     actors: string[] | undefined;
@@ -18,49 +19,19 @@ const ActorsAndDirectors = ({
                 <View style={styles.titleOfSectionContainer}>
                     <Text style={styles.titleOfSection}>Actors</Text>
                 </View>
-                {actors ? (
-                    <View style={styles.sectionContentContainer}>
-                        {actors.map((name) => (
-                            <View key={name}>
-                                <Text style={styles.sectionText}>{name}</Text>
-                            </View>
-                        ))}
-                    </View>
-                ) : (
-                    <Text>N/A</Text>
-                )}
+                <DisplayNames names={actors} />
             </View>
             <View style={styles.sectionContainer}>
                 <View style={styles.titleOfSectionContainer}>
                     <Text style={styles.titleOfSection}>Directors</Text>
                 </View>
-                {directors ? (
-                    <View style={styles.sectionContentContainer}>
-                        {directors.map((name) => (
-                            <View key={name}>
-                                <Text style={styles.sectionText}>{name}</Text>
-                            </View>
-                        ))}
-                    </View>
-                ) : (
-                    <Text>N/A</Text>
-                )}
+                <DisplayNames names={directors} />
             </View>
             <View style={styles.sectionContainer}>
                 <View style={styles.titleOfSectionContainer}>
                     <Text style={styles.titleOfSection}>Writers</Text>
                 </View>
-                {writers ? (
-                    <View style={styles.sectionContentContainer}>
-                        {writers.map((name) => (
-                            <View key={name}>
-                                <Text style={styles.sectionText}>{name}</Text>
-                            </View>
-                        ))}
-                    </View>
-                ) : (
-                    <Text>N/A</Text>
-                )}
+                <DisplayNames names={writers} />
             </View>
         </View>
     );

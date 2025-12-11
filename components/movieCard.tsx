@@ -1,10 +1,10 @@
 import { Genre } from '@/models/movies';
 import globalStyles from '@/styles/globalStyles';
 import styles from '@/styles/movies';
-
 import { useRouter } from 'expo-router';
 import { Image, Text, View } from 'react-native';
 import Button from './button';
+import Genres from './genres';
 
 type MovieCardProps = {
     _id: string;
@@ -55,32 +55,11 @@ const MovieCard = ({
                     <Text style={globalStyles.defaultTextColor}>{year}</Text>
                 </View>
 
-                {genres.length >= 3 ? (
-                    <View style={styles.genresContainer}>
-                        {genres.map((genre) => (
-                            <View key={genre.ID}>
-                                <Text style={globalStyles.defaultTextColor}>
-                                    {genre.Name}
-                                </Text>
-                            </View>
-                        ))}
-                    </View>
-                ) : (
-                    <View
-                        style={[
-                            styles.genresContainer,
-                            { flexDirection: 'row' },
-                        ]}
-                    >
-                        {genres.map((genre) => (
-                            <View key={genre.ID}>
-                                <Text style={globalStyles.defaultTextColor}>
-                                    {genre.Name}
-                                </Text>
-                            </View>
-                        ))}
-                    </View>
-                )}
+                <Genres
+                    genres={genres}
+                    genresContainer={styles.genresContainer}
+                    textStyels={globalStyles.defaultTextColor}
+                />
 
                 <View style={styles.footerRow}>
                     <View style={styles.certificateRow}>
