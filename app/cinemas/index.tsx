@@ -7,6 +7,7 @@ import globalStyles from '@/styles/globalStyles';
 import React, { useEffect, useMemo } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const Index = () => {
     const dispatch = useDispatch<AppDispatch>();

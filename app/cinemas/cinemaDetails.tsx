@@ -61,6 +61,7 @@ const CinemaDetails = () => {
                             color: '#93c5fd',
                             textDecorationLine: 'underline',
                             marginBottom: 12,
+                            fontSize: 20,
                         }}
                     >
                         {theater.website}
@@ -72,7 +73,7 @@ const CinemaDetails = () => {
                 <Text
                     style={[
                         globalStyles.defaultTextColor,
-                        { marginBottom: 16, fontSize: 15 },
+                        { marginBottom: 16, fontSize: 18, fontweight: '500' },
                     ]}
                 >
                     {theater.description}
@@ -95,7 +96,11 @@ const CinemaDetails = () => {
                     <Text
                         style={[
                             globalStyles.defaultTextColor,
-                            { marginBottom: 4, fontWeight: '600' },
+                            {
+                                marginBottom: 4,
+                                fontWeight: '600',
+                                fontSize: 20,
+                            },
                         ]}
                     >
                         Sími:
@@ -106,7 +111,11 @@ const CinemaDetails = () => {
                         <Text
                             style={[
                                 globalStyles.defaultTextColor,
-                                { marginBottom: 12, color: '#93c5fd' },
+                                {
+                                    marginBottom: 12,
+                                    color: '#93c5fd',
+                                    fontSize: 20,
+                                },
                             ]}
                         >
                             {theater.phone}
