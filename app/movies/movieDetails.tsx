@@ -16,13 +16,18 @@ const MovieDetails = () => {
     const dispatch = useDispatch<AppDispatch>();
     const router = useRouter();
     const movies = useSelector((state: RootState) => state.movies.items);
+    const upcomingMovies = useSelector(
+        (state: RootState) => state.upcoming.items
+    );
     const theaters = useSelector((state: RootState) => state.theater.items);
 
     const params = useLocalSearchParams<{
         movieId: string;
     }>();
 
-    const movieInfo: Movie | undefined = movies.find(
+    const allMovies = [...movies, ...upcomingMovies];
+    
+    const movieInfo: Movie | undefined = allMovies.find(
         (movie) => movie._id === params.movieId
     );
 
@@ -90,15 +95,17 @@ const MovieDetails = () => {
                     writers={names.writer}
                 />
 
-                <View>
-                    {movieInfo.showtimes.map((show) => (
-                        <Showtime
-                            key={show.cinema.id}
-                            name={show.cinema.name}
-                            schedules={show.schedule}
-                        />
-                    ))}
-                </View>
+                {Array.isArray(movieInfo.showtimes) && movieInfo.showtimes.length > 0 && (
+                    <View>
+                        {movieInfo.showtimes.map((show) => (
+                            <Showtime
+                                key={show.cinema.id}
+                                name={show.cinema.name}
+                                schedules={show.schedule}
+                            />
+                        ))}
+                    </View>
+                )}
             </View>
         </ScrollView>
     );
