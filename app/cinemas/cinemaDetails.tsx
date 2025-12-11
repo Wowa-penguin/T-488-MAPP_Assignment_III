@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { RootState } from '@/store';
 import globalStyles from '@/styles/globalStyles';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -11,36 +12,35 @@ import {
     View,
 } from 'react-native';
 import { useSelector } from 'react-redux';
+=======
+import React, { useMemo } from 'react';
+import { ScrollView, Text, View, TouchableOpacity } from 'react-native';
+import { useLocalSearchParams } from 'expo-router';
+import { useSelector } from 'react-redux';
+
+import { RootState } from '@/store';
+import globalStyles from '@/styles/globalStyles';
+
+import { openLink } from '@/utils/openLink';
+import { getCinemaMovies } from '@/utils/cinemaMovies';
+
+import MovieCard from '@/components/movieCard';
+import Showtime from '@/components/showtime';
+>>>>>>> Stashed changes
 
 const CinemaDetails = () => {
     const { cinemaId } = useLocalSearchParams<{ cinemaId?: string }>();
     const id = cinemaId ? Number(cinemaId) : NaN;
 
-    const router = useRouter();
-
-    // Get theater info
     const theaters = useSelector((state: RootState) => state.theater.items);
     const theater = theaters.find((t) => t.id === id);
 
-    // Get all movies
     const movies = useSelector((state: RootState) => state.movies.items);
 
-    // Movies that have showtimes at this theater
-    const cinemaMovies = useMemo(() => {
-        const filtered = movies.filter((movie) =>
-            movie.showtimes.some((s) => s.cinema.id === id)
-        );
-
-        // Deduplicate by movie.id
-        const map = new Map<number, (typeof filtered)[number]>();
-        filtered.forEach((movie) => {
-            if (!map.has(movie.id)) {
-                map.set(movie.id, movie);
-            }
-        });
-
-        return Array.from(map.values());
-    }, [movies, id]);
+    const cinemaMovies = useMemo(
+        () => getCinemaMovies(movies, id),
+        [movies, id]
+    );
 
     if (!theater) {
         return (
@@ -57,16 +57,11 @@ const CinemaDetails = () => {
         );
     }
 
-    const openLink = (url?: string) => {
-        if (url) Linking.openURL(url);
-    };
-
     return (
         <ScrollView
             style={[{ flex: 1 }, globalStyles.defaultBackgroundColor]}
             contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
         >
-            {/* Theater name */}
             <Text
                 style={[
                     globalStyles.defaultTextColor,
@@ -76,8 +71,7 @@ const CinemaDetails = () => {
                 {theater.name}
             </Text>
 
-            {/* Website */}
-            {theater.website ? (
+            {theater.website && (
                 <TouchableOpacity onPress={() => openLink(theater.website)}>
                     <Text
                         style={{
@@ -89,10 +83,9 @@ const CinemaDetails = () => {
                         {theater.website}
                     </Text>
                 </TouchableOpacity>
-            ) : null}
+            )}
 
-            {/* Description */}
-            {theater.description ? (
+            {theater.description && (
                 <Text
                     style={[
                         globalStyles.defaultTextColor,
@@ -101,9 +94,8 @@ const CinemaDetails = () => {
                 >
                     {theater.description}
                 </Text>
-            ) : null}
+            )}
 
-            {/* Address */}
             <Text
                 style={[
                     globalStyles.defaultTextColor,
@@ -116,8 +108,7 @@ const CinemaDetails = () => {
                 {theater.address}, {theater.city}
             </Text>
 
-            {/* Phone */}
-            {theater.phone ? (
+            {theater.phone && (
                 <>
                     <Text
                         style={[
@@ -140,10 +131,9 @@ const CinemaDetails = () => {
                         </Text>
                     </TouchableOpacity>
                 </>
-            ) : null}
+            )}
 
-            {/* Google Maps */}
-            {theater.google_map ? (
+            {theater.google_map && (
                 <TouchableOpacity onPress={() => openLink(theater.google_map)}>
                     <Text
                         style={{
@@ -155,9 +145,8 @@ const CinemaDetails = () => {
                         Opna í Google Maps
                     </Text>
                 </TouchableOpacity>
-            ) : null}
+            )}
 
-            {/* Movies showing here */}
             <Text
                 style={[
                     globalStyles.defaultTextColor,
@@ -172,37 +161,23 @@ const CinemaDetails = () => {
                     Engar myndir fundust fyrir þetta bíó.
                 </Text>
             ) : (
-                <View style={{ gap: 14 }}>
+                <View style={{ gap: 20 }}>
                     {cinemaMovies.map((movie) => {
                         const showtime = movie.showtimes.find(
-                            (s) => s.cinema.id === id
+                            (s: any) => s.cinema.id === id
                         );
 
                         return (
-                            <TouchableOpacity
-                                key={movie.id}
-                                onPress={() =>
-                                    router.push(
-                                        `/movies/movieDetails?movieId=${movie._id}` as never
-                                    )
-                                }
-                                style={{
-                                    backgroundColor: '#1e293b',
-                                    borderRadius: 12,
-                                    padding: 12,
-                                    flexDirection: 'row',
-                                    gap: 12,
-                                }}
-                            >
-                                {/* Poster */}
-                                <Image
-                                    source={{ uri: movie.poster }}
-                                    style={{
-                                        width: 70,
-                                        height: 100,
-                                        borderRadius: 8,
-                                    }}
+                            <View key={movie.id}>
+                                <MovieCard
+                                    _id={movie._id}
+                                    title={movie.title}
+                                    poster={movie.poster}
+                                    genres={movie.genres}
+                                    certificateIS={movie.certificateIS}
+                                    certificateImg={movie.certificateImg}
                                 />
+<<<<<<< Updated upstream
 
                                 <View style={{ flex: 1 }}>
                                     {/* Title + year */}
@@ -300,6 +275,15 @@ const CinemaDetails = () => {
                                         )}
                                 </View>
                             </TouchableOpacity>
+=======
+                                {showtime && (
+                                    <Showtime
+                                        name="Sýningartímar"
+                                        schedules={showtime.schedule}
+                                    />
+                                )}
+                            </View>
+>>>>>>> Stashed changes
                         );
                     })}
                 </View>
