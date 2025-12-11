@@ -52,7 +52,7 @@ export default function HomeScreen() {
                 animationType="slide"
                 transparent={true}
             >
-                <FilterMenu />
+                <FilterMenu handelCansel={() => setFilterModalVisible(false)} />
             </Modal>
             <View
                 style={{
