@@ -14,6 +14,11 @@ const Index = () => {
     const { items, status, error } = useSelector(
         (state: RootState) => state.upcoming
     );
+    const sortedItems = [...items].sort((a, b) => {
+        const aDate = (a as any)['release-dateIS'] ?? '';
+        const bDate = (b as any)['release-dateIS'] ?? '';
+        return aDate.localeCompare(bDate);
+    });
 
     useEffect(() => {
         if (status === 'idle') {
@@ -92,7 +97,7 @@ const Index = () => {
                 </Text>
             </View>                       
 
-            {items.length === 0 ? (
+            {sortedItems.length === 0 ? (
                 <View style={{ paddingHorizontal: 16 }}>
                     <Text style={globalStyles.defaultTextColor}>
                         Engar væntanlegar myndir fundust.
@@ -100,24 +105,40 @@ const Index = () => {
                 </View>                
             ) : (
                 <View style={movieStyles.container}>
-                    {items.map((movie) => (
-                        <MovieCard
-                            key={movie._id}
-                            _id={movie._id}
-                            title={
-                                movie.alternativeTitles.length <
-                                    movie.title.length &&
-                                movie.alternativeTitles
-                                    ? movie.alternativeTitles
-                                    : movie.title
-                            }
-                            year={movie.year}
-                            poster={movie.poster}
-                            genres={movie.genres}
-                            certificateIS={movie.certificateIS}
-                            certificateImg={movie.certificateImg}
-                        />
-                    ))}
+                    {sortedItems.map((movie) => {
+                        const releaseDateIS = (movie as any)['release-dateIS'];
+
+                        return (
+                            <View key={movie._id} style={{ gap: 4 }}>
+                                {releaseDateIS && (
+                                    <Text
+                                        style={[
+                                            globalStyles.defaultTextColor,
+                                            { marginLeft: 12 },
+                                        ]}
+                                    >
+                                        Frumsýning: {releaseDateIS}
+                                    </Text>
+                                )}
+
+                                <MovieCard                                
+                                    _id={movie._id}
+                                    title={
+                                        movie.alternativeTitles.length <
+                                            movie.title.length &&
+                                        movie.alternativeTitles
+                                            ? movie.alternativeTitles
+                                            : movie.title
+                                    }
+                                    year={movie.year}
+                                    poster={movie.poster}
+                                    genres={movie.genres}
+                                    certificateIS={movie.certificateIS}
+                                    certificateImg={movie.certificateImg}
+                                />                    
+                            </View>
+                        );                
+                    })}
                 </View>
             )}            
         </ScrollView>
