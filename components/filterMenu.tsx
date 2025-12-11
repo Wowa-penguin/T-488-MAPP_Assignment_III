@@ -14,14 +14,9 @@ type FilterMenuProps = {
         directors: string;
         pg: string;
     }) => void;
-    handelClear: () => void;
 };
 
-const FilterMenu = ({
-    handelCansel,
-    onApply,
-    handelClear,
-}: FilterMenuProps) => {
+const FilterMenu = ({ handelCansel, onApply }: FilterMenuProps) => {
     const [rating, setRating] = useState('');
     const [actors, setActors] = useState('');
     const [directors, setDirectors] = useState('');
@@ -85,13 +80,6 @@ const FilterMenu = ({
                         onPress={handelCansel}
                     >
                         Cansel
-                    </Button>
-                    <Button
-                        style={globalStyles.defaultButton}
-                        textStyle={globalStyles.defaultTextColor}
-                        onPress={handelClear}
-                    >
-                        Clear filters
                     </Button>
                     <Button
                         style={globalStyles.defaultButton}
