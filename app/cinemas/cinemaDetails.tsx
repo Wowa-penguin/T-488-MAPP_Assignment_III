@@ -1,6 +1,6 @@
 import { RootState } from '@/store';
-import globalStyles from '@/styles/globalStyles';
 import styles from '@/styles/cinemas';
+import globalStyles from '@/styles/globalStyles';
 import { useLocalSearchParams } from 'expo-router';
 import React, { useMemo } from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
