@@ -66,7 +66,6 @@ export default StyleSheet.create({
         width: 100,
         alignSelf: 'center',
         height: '96%',
-        
     },
     cardContent: {
         justifyContent: 'space-between',
@@ -86,9 +85,9 @@ export default StyleSheet.create({
         gap: 5,
     },
     footerRow: {
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    gap: 6,
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        gap: 6,
     },
     certificateRow: {
         flexDirection: 'row',
@@ -134,7 +133,4 @@ export default StyleSheet.create({
         height: '96%',
         alignSelf: 'center',
     },
-
-  
-
 });

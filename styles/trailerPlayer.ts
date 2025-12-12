@@ -16,6 +16,6 @@ export default StyleSheet.create({
         opacity: 0.7,
     },
     heading: {
-    marginBottom: 6,
-},
+        marginBottom: 6,
+    },
 });
