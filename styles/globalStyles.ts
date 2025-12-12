@@ -2,9 +2,9 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     defaultButton: {
-        backgroundColor: '#1A1A2F',
+        backgroundColor: '#34a',
         borderStyle: 'solid',
-        borderColor: '#39396fff',
+        borderColor: '#56f',
         borderWidth: 2,
         borderRadius: 20,
         padding: 5,

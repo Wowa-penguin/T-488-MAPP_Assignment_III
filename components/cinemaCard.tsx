@@ -1,7 +1,7 @@
 import styles from '@/styles/cinemas';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { Text, TouchableOpacity } from 'react-native';
+import CardGradient from './cardGradient';
 
 type CinemaCardProps = {
     id: number;
@@ -21,13 +21,7 @@ const CinemaCard = ({ id, name, website }: CinemaCardProps) => {
 
     return (
         <TouchableOpacity style={styles.card} onPress={handlePress}>
-            <LinearGradient
-                colors={['#24a', '#147', '#246', '#014']}
-                locations={[0, 0.35, 0.7, 1]}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={styles.gradient}
-            />
+            <CardGradient style={styles.gradient} />
 
             <Text style={styles.name}>{name}</Text>
             {website ? <Text style={styles.website}>{website}</Text> : null}

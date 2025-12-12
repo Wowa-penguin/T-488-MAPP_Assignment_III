@@ -57,8 +57,9 @@ export default StyleSheet.create({
         paddingRight: 10,
         gap: 8,
         borderRadius: 20,
-        borderColor: '#39396fff', //* border color for all movie cards
-        backgroundColor: '#1A1A2F', //* background color for all movie cards
+        borderColor: '#39396fff',
+        backgroundColor: '#1A1A2F',
+        position: 'relative',
     },
     poster: {
         borderRadius: 15,
@@ -78,6 +79,7 @@ export default StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         flexShrink: 1,
+        flex: 1,
     },
     genresContainer: {
         width: 'auto',
@@ -126,11 +128,9 @@ export default StyleSheet.create({
         borderRadius: 12,
         elevation: 10,
     },
-    posterWrapper: {
-        borderRadius: 10,
-        overflow: 'hidden',
-        width: 100,
-        height: '96%',
-        alignSelf: 'center',
+    gradient: {
+        ...StyleSheet.absoluteFillObject,
+        borderRadius: 15,
+        opacity: 1,
     },
 });

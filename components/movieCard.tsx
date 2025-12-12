@@ -4,6 +4,7 @@ import styles from '@/styles/movies';
 import { useRouter } from 'expo-router';
 import { Image, Text, View } from 'react-native';
 import Button from './button';
+import CardGradient from './cardGradient';
 import Genres from './genres';
 
 type MovieCardProps = {
@@ -36,6 +37,8 @@ const MovieCard = ({
 
     return (
         <View style={styles.movieCardContainer}>
+            <CardGradient style={styles.gradient} />
+
             <Image
                 style={styles.poster}
                 source={{
