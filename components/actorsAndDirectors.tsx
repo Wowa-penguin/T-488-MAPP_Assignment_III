@@ -16,13 +16,13 @@ const ActorsAndDirectors = ({
     return (
         <View style={{ gap: 10 }}>
             <View style={styles.sectionContainer}>
-                <DisplayNames title={'Actors'} names={actors} />
+                <DisplayNames title={'Leikarar'} names={actors} />
             </View>
             <View style={styles.sectionContainer}>
-                <DisplayNames title={'Directors'} names={directors} />
+                <DisplayNames title={'Leikstjóri'} names={directors} />
             </View>
             <View style={styles.sectionContainer}>
-                <DisplayNames title={'Writers'} names={writers} />
+                <DisplayNames title={'Handritshöfundar'} names={writers} />
             </View>
         </View>
     );
