@@ -53,6 +53,9 @@ export default StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
+        backgroundColor: '#1A1A1A',
+        padding: 10,
+        borderRadius: 10,
         gap: 10,
     },
     timeButton: {
@@ -63,15 +66,18 @@ export default StyleSheet.create({
         borderRadius: 10,
     },
     favoriteButton: {
-        marginTop: 12,
         width: 50,
         height: 40,
         alignItems: 'center',
         justifyContent: 'center',
     },
     ratingLogosContainer: {
+        backgroundColor: '#1A1A1A',
         flexDirection: 'row',
         justifyContent: 'space-around',
+        marginBottom: 10,
+        padding: 10,
+        borderRadius: 10,
     },
     ratingLogoAndTextContainer: {
         flexDirection: 'row',
@@ -81,5 +87,26 @@ export default StyleSheet.create({
         width: 75,
         height: 75,
         resizeMode: 'contain',
+    },
+    buttonsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        gap: 20,
+    },
+    touchableOpacity: {
+        backgroundColor: '#192',
+        borderStyle: 'solid',
+        borderColor: '#afa',
+        borderWidth: 3,
+        borderRadius: 20,
+        padding: 5,
+        width: '80%',
+    },
+    touchableOpacityText: {
+        color: '#fff',
+        fontSize: 22,
+        fontWeight: 'bold',
+        textAlign: 'center',
     },
 });

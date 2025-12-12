@@ -14,7 +14,7 @@ import moviesStyles from '@/styles/movies';
 import { checkNames } from '@/utils/checkAndHandelNames';
 import { getTrailerUrl } from '@/utils/getTrailerUrl';
 import { useLocalSearchParams } from 'expo-router';
-import { Image, ScrollView, Text, View } from 'react-native';
+import { Image, ScrollView, Share, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 const MovieDetails = () => {
@@ -48,6 +48,13 @@ const MovieDetails = () => {
     }
 
     const trailerUrl = getTrailerUrl(movieInfo);
+    const handleShare = async () => {
+        const link = `myapp://movie/${movieInfo._id}`;
+
+        await Share.share({
+            message: `${movieInfo.title} (${movieInfo.year})\n${link}`,
+        });
+    };
 
     const isFavorite = favoriteIds.includes(movieInfo._id);
 
@@ -84,18 +91,29 @@ const MovieDetails = () => {
                         {movieInfo.year}
                     </Text>
                     <Text style={globalStyles.defaultTextColor}>
-                        Duration {movieInfo.durationMinutes} minutes long
+                        {movieInfo.durationMinutes} minutes long
                     </Text>
                 </View>
-
-                <Button
-                    style={[globalStyles.defaultButton, styles.favoriteButton]}
-                    onPress={() => dispatch(toggleFavorite(movieInfo._id))}
-                >
-                    <Text style={globalStyles.defaultTextColor}>
-                        {isFavorite ? '❤️' : '🤍'}
-                    </Text>
-                </Button>
+                <View style={styles.buttonsContainer}>
+                    <Button
+                        style={[
+                            globalStyles.defaultButton,
+                            styles.favoriteButton,
+                        ]}
+                        onPress={() => dispatch(toggleFavorite(movieInfo._id))}
+                    >
+                        <Text style={globalStyles.defaultTextColor}>
+                            {isFavorite ? '❤️' : '🤍'}
+                        </Text>
+                    </Button>
+                    <Button
+                        onPress={handleShare}
+                        style={styles.touchableOpacity}
+                        textStyle={styles.touchableOpacityText}
+                    >
+                        Share
+                    </Button>
+                </View>
 
                 <View style={styles.sectionContainer}>
                     <View style={styles.titleOfSectionContainer}>
@@ -137,8 +155,9 @@ const MovieDetails = () => {
                         </View>
                     )}
                 <View>
-                    {/* todo: more detailed ratings display and styles */}
-                    <Ratings ratings={movieInfo.ratings} />
+                    {movieInfo.ratings ? (
+                        <Ratings ratings={movieInfo.ratings} />
+                    ) : null}
                 </View>
             </View>
         </ScrollView>

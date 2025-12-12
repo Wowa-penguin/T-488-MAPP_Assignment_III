@@ -159,7 +159,7 @@ const CinemaDetails = () => {
                         );
 
                         return (
-                            <View key={movie._id}>
+                            <View key={movie._id} style={{ gap: 10 }}>
                                 <MovieCard
                                     _id={movie._id}
                                     title={movie.title}

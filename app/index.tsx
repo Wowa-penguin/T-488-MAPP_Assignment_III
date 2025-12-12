@@ -81,16 +81,32 @@ export default function HomeScreen() {
             if (!matchesSearch) return false;
         }
 
-        if (ratingLower) {
-            // todo: check rating type
-            const imdbRating = movie.ratings.imdb;
-            const rottenRating = movie.ratings.rotten_critics;
-
-            if (
-                parseFloat(imdbRating) <= parseFloat(ratingLower) ||
-                parseFloat(rottenRating) <= parseFloat(ratingLower)
-            )
-                return false;
+        if (ratingLower && ratingType) {
+            switch (ratingType) {
+                case 'imdb':
+                    if (
+                        parseFloat(movie.ratings.imdb) <=
+                        parseFloat(ratingLower)
+                    )
+                        return false;
+                    break;
+                case 'rotten_critics':
+                    if (
+                        parseFloat(movie.ratings.rotten_critics) <=
+                        parseFloat(ratingLower)
+                    )
+                        return false;
+                    break;
+                case 'rotten_audience':
+                    if (
+                        parseFloat(movie.ratings.rotten_audience) <=
+                        parseFloat(ratingLower)
+                    )
+                        return false;
+                    break;
+                default:
+                    break;
+            }
         }
 
         if (actorsLower) {
