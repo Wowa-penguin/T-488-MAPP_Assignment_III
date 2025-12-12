@@ -31,5 +31,5 @@ export function getTrailerUrl(movie: any): string | null {
 
     youtube.sort((a, b) => rank(a).localeCompare(rank(b)));
 
-    return 'https://www.youtube.com/embed/${youtube[0].key}';
+    return `https://www.youtube.com/watch?v=${youtube[0].key}`;
 }
