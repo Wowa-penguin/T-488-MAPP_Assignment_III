@@ -1,9 +1,9 @@
 import ActorsAndDirectors from '@/components/actorsAndDirectors';
 import Button from '@/components/button';
 import Error from '@/components/error';
-import Genres from '@/components/genres';
 import MovieInfoPosterAndPlot from '@/components/movieInfoPosterAndPlot';
 import Ratings from '@/components/ratings';
+import ReviewSection from '@/components/reviewSection';
 import Showtime from '@/components/showtime';
 import TrailerPlayer from '@/components/trailerPlayer';
 import { Movie } from '@/models/movies';
@@ -20,6 +20,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const MovieDetails = () => {
     const dispatch = useDispatch();
+    const params = useLocalSearchParams<{
+        movieId: string;
+    }>();
+    const movieId = params.movieId as string;
     const favoriteIds = useSelector(
         (state: RootState) => state.favorites.movieIds
     );
@@ -29,14 +33,10 @@ const MovieDetails = () => {
         (state: RootState) => state.upcoming.items
     );
 
-    const params = useLocalSearchParams<{
-        movieId: string;
-    }>();
-
     const allMovies = [...movies, ...upcomingMovies];
 
     const movieInfo: Movie | undefined = allMovies.find(
-        (movie) => movie._id === params.movieId
+        (movie) => movie._id === movieId
     );
 
     if (!movieInfo) {
@@ -112,16 +112,7 @@ const MovieDetails = () => {
                     </Button>
                 </View>
 
-                <View style={styles.sectionContainer}>
-                    <View style={styles.titleOfSectionContainer}>
-                        <Text style={styles.titleOfSection}>Genres</Text>
-                    </View>
-                    <Genres
-                        genres={movieInfo.genres}
-                        genresContainer={styles.sectionContentContainer}
-                        textStyels={styles.sectionText}
-                    />
-                </View>
+                <ReviewSection movieId={movieInfo._id} />
 
                 <ActorsAndDirectors
                     actors={names.actors}
