@@ -20,9 +20,19 @@ const Showtime = ({ name, schedules }: ShowtiemProps) => {
         await WebBrowser.openBrowserAsync(url);
     };
 
+    if (name === 'Sambíóin, Akureyri') {
+        name = 'Sambíóin Akureyri';
+    } else if (name === 'Kringlubíó') {
+        name = 'Sambíóin Kringlunni';
+    } else if (name === 'Álfabakki') {
+        name = 'Samíóin Álfabakka';
+    }
+
     return (
         <View style={{ marginBottom: 10, gap: 10 }}>
-            <Text style={globalStyles.defaultTitel}>{name}</Text>
+            <View style={styles.titleOfSectionContainer}>
+                <Text style={styles.titleOfSection}>{name}</Text>
+            </View>
             <View style={styles.scheduleContainer}>
                 {schedules.map((schedule) => (
                     <View key={schedule.purchase_url}>

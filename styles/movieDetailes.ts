@@ -53,6 +53,9 @@ export default StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
+        backgroundColor: '#1A1A1A',
+        padding: 10,
+        borderRadius: 10,
         gap: 10,
     },
     timeButton: {
