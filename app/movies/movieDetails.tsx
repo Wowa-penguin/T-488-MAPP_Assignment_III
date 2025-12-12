@@ -1,5 +1,6 @@
 import ActorsAndDirectors from '@/components/actorsAndDirectors';
 import Button from '@/components/button';
+import Error from '@/components/error';
 import Genres from '@/components/genres';
 import MovieInfoPosterAndPlot from '@/components/movieInfoPosterAndPlot';
 import Ratings from '@/components/ratings';
@@ -40,11 +41,7 @@ const MovieDetails = () => {
 
     if (!movieInfo) {
         // if _id is missing or movie not found
-        return (
-            <View>
-                <Text>Error</Text>
-            </View>
-        );
+        return <Error>Movie not found.</Error>;
     }
 
     const trailerUrl = getTrailerUrl(movieInfo);

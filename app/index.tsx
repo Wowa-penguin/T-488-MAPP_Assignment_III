@@ -1,5 +1,6 @@
 import Button from '@/components/button';
 import DisplayFilters from '@/components/displayFilters';
+import Error from '@/components/error';
 import Filter from '@/components/filter';
 import FilterMenu from '@/components/filterMenu';
 import Loading from '@/components/loading';
@@ -10,7 +11,7 @@ import { fetchTheaters } from '@/store/theaterSlice';
 import globalStyles from '@/styles/globalStyles';
 import styles from '@/styles/movies';
 import React, { useEffect, useState } from 'react';
-import { Modal, ScrollView, Text, View } from 'react-native';
+import { Modal, ScrollView, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function HomeScreen() {
@@ -42,16 +43,11 @@ export default function HomeScreen() {
     const [filterModalVisible, setFilterModalVisible] = useState(false);
 
     if (status === 'loading') {
-        return <Loading />; // todo: add better loading screen and fix component
+        return <Loading />;
     }
 
     if (status === 'failed') {
-        //todo: better error handling and add error component
-        return (
-            <View>
-                <Text>Error: {error}</Text>
-            </View>
-        );
+        return <Error>{error}</Error>;
     }
 
     const handleFilters = (newFilters: {
