@@ -1,5 +1,5 @@
-import Loading from '@/components/loading';
 import Button from '@/components/button';
+import Loading from '@/components/loading';
 import MovieCard from '@/components/movieCard';
 import { AppDispatch, RootState } from '@/store';
 import { fetchUpcomingMovies } from '@/store/upcomingSlice';
@@ -30,10 +30,10 @@ const Index = () => {
         return (
             <View
                 style={[
-                    { flex: 1, justifyContent: 'center', alignItems: 'center' },
+                    movieStyles.loaderContainer,
                     globalStyles.defaultBackgroundColor,
                 ]}
-            >        
+            >
                 <Loading />
             </View>
         );
@@ -43,12 +43,7 @@ const Index = () => {
         return (
             <View
                 style={[
-                    {
-                        flex: 1,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        padding: 16,
-                    },
+                    movieStyles.errorContainer,
                     globalStyles.defaultBackgroundColor,
                 ]}
             >
@@ -70,7 +65,7 @@ const Index = () => {
                 <Button
                     style={[
                         globalStyles.defaultButton,
-                        { marginTop: 20, paddingHorizontal: 12 },
+                        movieStyles.retryButton,
                     ]}
                     textStyle={globalStyles.defaultTextColor}
                     onPress={() => dispatch(fetchUpcomingMovies())}
@@ -83,45 +78,48 @@ const Index = () => {
 
     return (
         <ScrollView
-            style={[{ flex: 1 }, globalStyles.defaultBackgroundColor]}
-            contentContainerStyle={{ paddingVertical: 16 }}        
+            style={[movieStyles.root, globalStyles.defaultBackgroundColor]}
+            contentContainerStyle={movieStyles.contentContainer}
         >
-            <View style={{ paddingHorizontal: 8, marginBottom: 8}}>
+            <View style={{ paddingHorizontal: 8, marginBottom: 8 }}>
                 <Text
                     style={[
                         globalStyles.defaultTextColor,
-                        { fontSize: 22, fontWeight: 'bold' },
+                        movieStyles.titleLarge,
                     ]}
                 >
                     Væntanlegar mydir
                 </Text>
-            </View>                       
+            </View>
 
             {sortedItems.length === 0 ? (
-                <View style={{ paddingHorizontal: 16 }}>
+                <View style={movieStyles.messageContainer}>
                     <Text style={globalStyles.defaultTextColor}>
                         Engar væntanlegar myndir fundust.
                     </Text>
-                </View>                
+                </View>
             ) : (
                 <View style={movieStyles.container}>
                     {sortedItems.map((movie) => {
                         const releaseDateIS = (movie as any)['release-dateIS'];
 
                         return (
-                            <View key={movie._id} style={{ gap: 4 }}>
+                            <View
+                                key={movie._id}
+                                style={movieStyles.movieItemContainer}
+                            >
                                 {releaseDateIS && (
                                     <Text
                                         style={[
                                             globalStyles.defaultTextColor,
-                                            { marginLeft: 12 },
+                                            movieStyles.releaseDateText,
                                         ]}
                                     >
                                         Frumsýning: {releaseDateIS}
                                     </Text>
                                 )}
 
-                                <MovieCard                                
+                                <MovieCard
                                     _id={movie._id}
                                     title={
                                         movie.alternativeTitles.length <
@@ -135,12 +133,12 @@ const Index = () => {
                                     genres={movie.genres}
                                     certificateIS={movie.certificateIS}
                                     certificateImg={movie.certificateImg}
-                                />                    
+                                />
                             </View>
-                        );                
+                        );
                     })}
                 </View>
-            )}            
+            )}
         </ScrollView>
     );
 };

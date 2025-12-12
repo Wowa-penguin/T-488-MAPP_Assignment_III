@@ -8,6 +8,44 @@ export default StyleSheet.create({
         marginBottom: 15,
         alignSelf: 'center',
     },
+    root: {
+        flex: 1,
+    },
+    contentContainer: {
+        paddingVertical: 16,
+    },
+    headerWrapper: {
+        paddingHorizontal: 8,
+        marginBottom: 8,
+    },
+    titleLarge: {
+        fontSize: 22,
+        fontWeight: 'bold',
+    },
+    loaderContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    errorContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 16,
+    },
+    retryButton: {
+        marginTop: 20,
+        paddingHorizontal: 12,
+    },
+    messageContainer: {
+        paddingHorizontal: 16,
+    },
+    movieItemContainer: {
+        gap: 4,
+    },
+    releaseDateText: {
+        marginLeft: 12,
+    },
     movieCardContainer: {
         flexDirection: 'row',
         alignSelf: 'center',

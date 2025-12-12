@@ -1,5 +1,6 @@
 import { RootState } from '@/store';
 import globalStyles from '@/styles/globalStyles';
+import styles from '@/styles/cinemas';
 import { useLocalSearchParams } from 'expo-router';
 import React, { useMemo } from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
@@ -29,7 +30,7 @@ const CinemaDetails = () => {
         return (
             <View
                 style={[
-                    { flex: 1, justifyContent: 'center', padding: 16 },
+                    styles.notFoundContainer,
                     globalStyles.defaultBackgroundColor,
                 ]}
             >
@@ -42,30 +43,19 @@ const CinemaDetails = () => {
 
     return (
         <ScrollView
-            style={[{ flex: 1 }, globalStyles.defaultBackgroundColor]}
-            contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
+            style={[
+                styles.scrollContainer,
+                globalStyles.defaultBackgroundColor,
+            ]}
+            contentContainerStyle={styles.contentContainer}
         >
-            <Text
-                style={[
-                    globalStyles.defaultTextColor,
-                    { fontSize: 28, fontWeight: 'bold', marginBottom: 12 },
-                ]}
-            >
+            <Text style={[globalStyles.defaultTextColor, styles.theaterTitle]}>
                 {theater.name}
             </Text>
 
             {theater.website && (
                 <TouchableOpacity onPress={() => openLink(theater.website)}>
-                    <Text
-                        style={{
-                            color: '#93c5fd',
-                            textDecorationLine: 'underline',
-                            marginBottom: 12,
-                            fontSize: 20,
-                        }}
-                    >
-                        {theater.website}
-                    </Text>
+                    <Text style={styles.websiteLink}>{theater.website}</Text>
                 </TouchableOpacity>
             )}
 
@@ -73,22 +63,17 @@ const CinemaDetails = () => {
                 <Text
                     style={[
                         globalStyles.defaultTextColor,
-                        { marginBottom: 16, fontSize: 18, fontweight: '500' },
+                        styles.descriptionText,
                     ]}
                 >
                     {theater.description}
                 </Text>
             )}
 
-            <Text
-                style={[
-                    globalStyles.defaultTextColor,
-                    { marginBottom: 4, fontWeight: '600' },
-                ]}
-            >
+            <Text style={[globalStyles.defaultTextColor, styles.sectionLabel]}>
                 Heimilisfang:
             </Text>
-            <Text style={[globalStyles.defaultTextColor, { marginBottom: 12 }]}>
+            <Text style={[globalStyles.defaultTextColor, styles.addressText]}>
                 {theater.address}, {theater.city}
             </Text>
             {theater.phone && (
@@ -96,11 +81,7 @@ const CinemaDetails = () => {
                     <Text
                         style={[
                             globalStyles.defaultTextColor,
-                            {
-                                marginBottom: 4,
-                                fontWeight: '600',
-                                fontSize: 20,
-                            },
+                            styles.phoneLabel,
                         ]}
                     >
                         Sími:
@@ -108,41 +89,21 @@ const CinemaDetails = () => {
                     <TouchableOpacity
                         onPress={() => openLink(`tel:${theater.phone}`)}
                     >
-                        <Text
-                            style={[
-                                globalStyles.defaultTextColor,
-                                {
-                                    marginBottom: 12,
-                                    color: '#93c5fd',
-                                    fontSize: 20,
-                                },
-                            ]}
-                        >
-                            {theater.phone}
-                        </Text>
+                        <Text style={styles.phoneLink}>{theater.phone}</Text>
                     </TouchableOpacity>
                 </>
             )}
 
             {theater.google_map && (
                 <TouchableOpacity onPress={() => openLink(theater.google_map)}>
-                    <Text
-                        style={{
-                            color: '#93c5fd',
-                            textDecorationLine: 'underline',
-                            marginBottom: 20,
-                        }}
-                    >
+                    <Text style={styles.googleMapsLink}>
                         Opna í Google Maps
                     </Text>
                 </TouchableOpacity>
             )}
 
             <Text
-                style={[
-                    globalStyles.defaultTextColor,
-                    { fontSize: 20, fontWeight: '600', marginBottom: 12 },
-                ]}
+                style={[globalStyles.defaultTextColor, styles.sectionHeading]}
             >
                 Myndir í sýningu:
             </Text>
@@ -152,14 +113,14 @@ const CinemaDetails = () => {
                     Engar myndir fundust fyrir þetta bíó.
                 </Text>
             ) : (
-                <View style={{ gap: 20 }}>
+                <View style={styles.moviesList}>
                     {cinemaMovies.map((movie) => {
                         const showtime = movie.showtimes.find(
                             (s: any) => s.cinema.id === id
                         );
 
                         return (
-                            <View key={movie._id} style={{ gap: 10 }}>
+                            <View key={movie._id} style={styles.movieContainer}>
                                 <MovieCard
                                     _id={movie._id}
                                     title={movie.title}
