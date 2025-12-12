@@ -62,4 +62,24 @@ export default StyleSheet.create({
         padding: 6,
         borderRadius: 10,
     },
+    favoriteButton: {
+        marginTop: 12,
+        width: 50,
+        height: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    ratingLogosContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
+    ratingLogoAndTextContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    ratingsLogo: {
+        width: 75,
+        height: 75,
+        resizeMode: 'contain',
+    },
 });

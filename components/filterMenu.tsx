@@ -1,8 +1,10 @@
 import globalStyles from '@/styles/globalStyles';
+import movieDetailes from '@/styles/movieDetailes';
 import styles from '@/styles/movies';
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import Button from './button';
+import ButtonWithImage from './buttonWithImage';
 import CertificateLogos from './certificateLogos';
 import Search from './search';
 
@@ -10,6 +12,7 @@ type FilterMenuProps = {
     handelCansel: () => void;
     onApply: (filters: {
         rating: string;
+        ratingType: string;
         actors: string;
         directors: string;
         pg: string;
@@ -18,12 +21,13 @@ type FilterMenuProps = {
 
 const FilterMenu = ({ handelCansel, onApply }: FilterMenuProps) => {
     const [rating, setRating] = useState('');
+    const [ratingType, setRatingType] = useState('');
     const [actors, setActors] = useState('');
     const [directors, setDirectors] = useState('');
     const [pg, setPg] = useState('');
 
     const handelApply = () => {
-        onApply({ rating, actors, directors, pg });
+        onApply({ rating, ratingType, actors, directors, pg });
         handelCansel();
     };
 
@@ -35,8 +39,35 @@ const FilterMenu = ({ handelCansel, onApply }: FilterMenuProps) => {
         <View style={styles.modalBackground}>
             <View style={styles.modalContent}>
                 <View>
+                    <Text style={[globalStyles.defaultTextColor]}>Rating</Text>
+                    <View style={movieDetailes.ratingLogosContainer}>
+                        <ButtonWithImage
+                            keyName={'imdb'}
+                            containerStyle={
+                                movieDetailes.ratingLogoAndTextContainer
+                            }
+                            imgStyle={movieDetailes.ratingsLogo}
+                            onPress={() => setRatingType('imdb')}
+                        />
+                        <ButtonWithImage
+                            keyName={'rotten_critics'}
+                            containerStyle={
+                                movieDetailes.ratingLogoAndTextContainer
+                            }
+                            imgStyle={movieDetailes.ratingsLogo}
+                            onPress={() => setRatingType('rotten_critics')}
+                        />
+                        <ButtonWithImage
+                            keyName={'rotten_audience'}
+                            containerStyle={
+                                movieDetailes.ratingLogoAndTextContainer
+                            }
+                            imgStyle={movieDetailes.ratingsLogo}
+                            onPress={() => setRatingType('rotten_audience')}
+                        />
+                    </View>
                     <Search
-                        title="Rating"
+                        title=""
                         placeholder="Rating"
                         value={rating}
                         onChange={setRating}

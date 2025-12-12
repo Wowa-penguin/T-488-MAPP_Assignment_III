@@ -1,28 +1,28 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type FavoritesState = {
-  movieIds: string[];
+    movieIds: string[];
 };
 
 const initialState: FavoritesState = {
-  movieIds: [],
+    movieIds: [],
 };
 
 const STORAGE_KEY = 'favorites';
 
 const favoritesSlice = createSlice({
-  name: 'favorites',
-  initialState,
-  reducers: {
-    toggleFavorite(state, action: PayloadAction<string>) {
-      const id = action.payload;
+    name: 'favorites',
+    initialState,
+    reducers: {
+        toggleFavorite(state, action: PayloadAction<string>) {
+            const id = action.payload;
 
-      if (state.movieIds.includes(id)) {
-        state.movieIds = state.movieIds.filter((x) => x !== id);
-      } else {
-        state.movieIds.push(id);
-      }
+            if (state.movieIds.includes(id)) {
+                state.movieIds = state.movieIds.filter((x) => x !== id);
+            } else {
+                state.movieIds.push(id);
+            }
 
       AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(state.movieIds)).catch(
         (err) => {
@@ -79,7 +79,4 @@ export const loadFavorites = async (dispatch: any) => {
       const parsed = JSON.parse(json) as string[];
       dispatch(setFavoritesFromStorage(parsed));
     }
-  } catch (err) {
-    console.warn('Failed to load favorites', err);
-  }
 };

@@ -30,6 +30,10 @@ export default function RootLayout() {
                     headerStyle: {
                         backgroundColor: '#124',
                     },
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                        fontSize: 22,
+                    },
                     headerTintColor: '#fff',
                 }}
             >
@@ -57,6 +61,7 @@ export default function RootLayout() {
                 <Tabs.Screen
                     name="movies"
                     options={{
+                        href: null,
                         title: 'Movies',
                         headerShown: false,
                         tabBarIcon: ({ color }) => (

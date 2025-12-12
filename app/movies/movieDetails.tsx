@@ -2,6 +2,7 @@ import ActorsAndDirectors from '@/components/actorsAndDirectors';
 import Button from '@/components/button';
 import Genres from '@/components/genres';
 import MovieInfoPosterAndPlot from '@/components/movieInfoPosterAndPlot';
+import Ratings from '@/components/ratings';
 import Showtime from '@/components/showtime';
 import { Movie } from '@/models/movies';
 import { RootState } from '@/store';
@@ -24,7 +25,6 @@ const MovieDetails = () => {
     const upcomingMovies = useSelector(
         (state: RootState) => state.upcoming.items
     );
-    const theaters = useSelector((state: RootState) => state.theater.items);
 
     const params = useLocalSearchParams<{
         movieId: string;
@@ -85,16 +85,7 @@ const MovieDetails = () => {
                 </View>
 
                 <Button
-                    style={[
-                        globalStyles.defaultButton,
-                        {
-                            marginTop: 12,
-                            width: 50,
-                            height: 40,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                        },
-                    ]}
+                    style={[globalStyles.defaultButton, styles.favoriteButton]}
                     onPress={() => dispatch(toggleFavorite(movieInfo._id))}
                 >
                     <Text style={globalStyles.defaultTextColor}>
@@ -131,6 +122,10 @@ const MovieDetails = () => {
                             ))}
                         </View>
                     )}
+                <View>
+                    {/* todo: more detailed ratings display and styles */}
+                    <Ratings ratings={movieInfo.ratings} />
+                </View>
             </View>
         </ScrollView>
     );
