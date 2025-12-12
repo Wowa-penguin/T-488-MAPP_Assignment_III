@@ -12,10 +12,9 @@ import styles from '@/styles/movieDetailes';
 import moviesStyles from '@/styles/movies';
 import { checkNames } from '@/utils/checkAndHandelNames';
 import { useLocalSearchParams } from 'expo-router';
-import { Image, ScrollView, Text, View, TextInput } from 'react-native';
+import { Image, ScrollView, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-import { addReview } from '@/store/reviewsSlice';
+import ReviewSection from '@/components/reviewSection';
 
 const MovieDetails = () => {
     const dispatch = useDispatch();
@@ -30,13 +29,6 @@ const MovieDetails = () => {
     const movies = useSelector((state: RootState) => state.movies.items);
     const upcomingMovies = useSelector(
         (state: RootState) => state.upcoming.items
-    );
-
-    const [reviewText, setReviewText] = useState('');
-    const [rating, setRating] = useState(0);
-
-    const reviews = useSelector(
-        (state: RootState) => state.reviews.byMovieId[movieId] ?? []
     );
 
     const allMovies = [...movies, ...upcomingMovies];
@@ -60,21 +52,6 @@ const MovieDetails = () => {
         directors: movieInfo.directors_abridged,
         omdb: movieInfo.omdb[0],
     });
-
-    const handleSubmitReview = () => {
-        if (!reviewText.trim() || rating === 0) return;
-
-        dispatch(
-            addReview({
-                movieId: movieInfo._id,
-                text: reviewText.trim(),
-                rating,
-            })
-        );
-
-        setReviewText('');
-        setRating(0);
-    };
 
     return (
         <ScrollView
@@ -116,140 +93,7 @@ const MovieDetails = () => {
                     </Text>
                 </Button>
 
-                <View style={styles.sectionContainer}>
-                    <View style={styles.titleOfSectionContainer}>
-                        <Text style={styles.titleOfSection}>Genres</Text>
-                    </View>
-
-                    <View style={{ marginTop: 16, paddingHorizontal: 16 }}>
-                        <Text
-                            style={[
-                                globalStyles.defaultTextColor,
-                                { marginBottom: 4 },
-                            ]}
-                        >
-                            Þín einkunn
-                        </Text>
-
-                        <View style={{ flexDirection: 'row', marginBottom: 8, backgroundColor: 'skyblue', borderRadius: 8, }}>
-                            {[1, 2, 3, 4, 5].map((star) => (
-                                <Text
-                                    key={star}
-                                    onPress={() => setRating(star)}
-                                    style={{
-                                        fontSize: 28,
-                                        marginRight: 4,
-                                    }}
-                                >
-                                    {star <= rating ? '⭐️' : '☆'}
-                                </Text>
-                            ))}
-                        </View>
-
-                        <View style={{ marginTop: 24, paddingHorizontal: 16 }}>
-                            <Text
-                                style={[
-                                    globalStyles.defaultTextColor,
-                                    {
-                                        fontSize: 18,
-                                        fontWeight: 'bold',
-                                        marginBottom: 8,
-                                    },
-                                ]}
-                            >
-                                Umsagnir
-                            </Text>
-
-                            {reviews.length === 0 ? (
-                                <Text style={globalStyles.defaultTextColor}>
-                                    🍿Engin umsögn eins og er, vertu fyrstur til að skrifa umsögn!
-                                </Text>
-                            ) : (
-                                reviews.map((r) => (
-                                    <View
-                                        key={r.id}
-                                        style={{
-                                            marginBottom: 12,
-                                            padding: 10,
-                                            borderRadius: 12,
-                                            backgroundColor: '#222',
-                                        }}
-                                    >
-                                        <Text
-                                            style={{
-                                                fontSize: 16,
-                                                marginBottom: 4,
-                                            }}
-                                        >
-                                            {'⭐️'.repeat(r.rating)}{' '}
-                                            <Text
-                                                style={{
-                                                    color: '#aaa',
-                                                    fontSize: 12,
-                                                }}
-                                            >
-                                                {new Date(
-                                                    r.createdAt
-                                                ).toLocaleDateString()}
-                                            </Text>
-                                        </Text>
-                                        <Text
-                                            style={
-                                                globalStyles.defaultTextColor
-                                            }
-                                        >
-                                            {r.text}
-                                        </Text>
-                                    </View>
-                                ))
-                            )}
-                        </View>
-
-                        <Text
-                            style={[
-                                globalStyles.defaultTextColor,
-                                { marginBottom: 4 },
-                            ]}
-                        >
-                            Skrifa umsögn✍️
-                        </Text>
-
-                        <TextInput
-                            value={reviewText}
-                            onChangeText={setReviewText}
-                            placeholder="Hvað fannst þér um myndina?"
-                            placeholderTextColor="#777"
-                            multiline
-                            style={{
-                                borderRadius: 12,
-                                padding: 10,
-                                minHeight: 70,
-                                borderWidth: 1,
-                                borderColor: '#444',
-                                color: 'white',
-                                marginBottom: 8,
-                            }}
-                        />
-
-                        <Button
-                            style={[
-                                globalStyles.defaultButton,
-                                { alignSelf: 'flex-start' },
-                            ]}
-                            onPress={handleSubmitReview}
-                        >
-                            <Text style={globalStyles.defaultTextColor}>
-                                Staðfesta umsögn
-                            </Text>
-                        </Button>
-                    </View>
-
-                    <Genres
-                        genres={movieInfo.genres}
-                        genresContainer={styles.sectionContentContainer}
-                        textStyels={styles.sectionText}
-                    />
-                </View>
+                <ReviewSection movieId={movieInfo._id} />
 
                 <ActorsAndDirectors
                     actors={names.actors}
