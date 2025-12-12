@@ -17,6 +17,7 @@ export default function HomeScreen() {
     const [search, setSearch] = useState('');
     const [filters, setFilters] = useState({
         rating: '',
+        ratingType: '',
         actors: '',
         directors: '',
         pg: '',
@@ -41,11 +42,11 @@ export default function HomeScreen() {
     const [filterModalVisible, setFilterModalVisible] = useState(false);
 
     if (status === 'loading') {
-        return <Loading />; // todo:
+        return <Loading />; // todo: add better loading screen and fix component
     }
 
     if (status === 'failed') {
-        // todo:
+        //todo: better error handling and add error component
         return (
             <View>
                 <Text>Error: {error}</Text>
@@ -55,6 +56,7 @@ export default function HomeScreen() {
 
     const handleFilters = (newFilters: {
         rating: string;
+        ratingType: string;
         actors: string;
         directors: string;
         pg: string;
@@ -64,6 +66,7 @@ export default function HomeScreen() {
 
     const searchLower = search.toLowerCase();
     const ratingLower = filters.rating;
+    const ratingType = filters.ratingType;
     const actorsLower = filters.actors.toLowerCase();
     const directorsLower = filters.directors.toLowerCase();
     const pgFilter = filters.pg;
@@ -79,6 +82,7 @@ export default function HomeScreen() {
         }
 
         if (ratingLower) {
+            // todo: check rating type
             const imdbRating = movie.ratings.imdb;
             const rottenRating = movie.ratings.rotten_critics;
 
@@ -112,7 +116,13 @@ export default function HomeScreen() {
     });
 
     const clear = () => {
-        setFilters({ rating: '', actors: '', directors: '', pg: '' });
+        setFilters({
+            rating: '',
+            ratingType: '',
+            actors: '',
+            directors: '',
+            pg: '',
+        });
         setFilterModalVisible(false);
     };
 

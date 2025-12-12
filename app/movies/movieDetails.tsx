@@ -123,6 +123,7 @@ const MovieDetails = () => {
                         </View>
                     )}
                 <View>
+                    {/* todo: more detailed ratings display and styles */}
                     <Ratings ratings={movieInfo.ratings} />
                 </View>
             </View>

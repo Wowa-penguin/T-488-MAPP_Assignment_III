@@ -80,7 +80,7 @@ export default StyleSheet.create({
     },
     modalContent: {
         width: '85%',
-        height: '60%',
+        height: 'auto',
         backgroundColor: '#0D0D0D',
         padding: 20,
         borderRadius: 12,
