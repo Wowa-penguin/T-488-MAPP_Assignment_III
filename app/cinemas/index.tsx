@@ -1,13 +1,13 @@
 import CinemaCard from '@/components/cinemaCard';
+import Error from '@/components/error';
 import Loading from '@/components/loading';
 import { AppDispatch, RootState } from '@/store';
 import { fetchTheaters } from '@/store/theaterSlice';
 import styles from '@/styles/cinemas';
 import globalStyles from '@/styles/globalStyles';
 import React, { useEffect, useMemo } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { LinearGradient } from 'expo-linear-gradient';
 
 const Index = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -17,6 +17,11 @@ const Index = () => {
         status,
         error,
     } = useSelector((state: RootState) => state.theater);
+
+    const sortedTheaters = useMemo(
+        () => [...theater].sort((a, b) => a.name.localeCompare(b.name)),
+        [theater]
+    );
 
     useEffect(() => {
         if (status === 'idle') {
@@ -31,15 +36,10 @@ const Index = () => {
     if (status === 'failed') {
         return (
             <View>
-                <Text>Error: {error}</Text>
+                <Error>{error}</Error>
             </View>
         );
     }
-
-    const sortedTheaters = useMemo(
-        () => [...theater].sort((a, b) => a.name.localeCompare(b.name)),
-        [theater]
-    );
 
     return (
         <ScrollView

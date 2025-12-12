@@ -1,9 +1,13 @@
 import { Text, View } from 'react-native';
 
-const Error = () => {
+type ErrorProps = {
+    children: React.ReactNode;
+};
+
+const Error = ({ children }: ErrorProps) => {
     return (
         <View>
-            <Text>Error Code</Text>
+            <Text>{children}</Text>
         </View>
     );
 };
