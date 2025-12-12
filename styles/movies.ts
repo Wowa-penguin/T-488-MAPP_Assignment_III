@@ -73,21 +73,18 @@ export default StyleSheet.create({
         paddingTop: 3,
         paddingBottom: 3,
         flex: 1,
-        minWidth: 0,
     },
     movieTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        flexShrink: 1,
-        flex: 1,
     },
     genresContainer: {
-        width: 'auto',
         justifyContent: 'space-evenly',
-        gap: 5,
+        gap: 2,
     },
     footerRow: {
         flexDirection: 'column',
+        marginTop: 10,
         alignItems: 'flex-start',
         gap: 6,
     },
