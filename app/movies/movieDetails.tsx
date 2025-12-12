@@ -122,7 +122,7 @@ const MovieDetails = () => {
 
                 <View style={styles.sectionContainer}>
                     <View style={styles.titleOfSectionContainer}>
-                        <Text style={styles.titleOfSection}>Trailer</Text>
+                        <Text style={styles.titleOfSection}>Stilka</Text>
                     </View>
 
                     <View style={styles.sectionContentContainer}>
