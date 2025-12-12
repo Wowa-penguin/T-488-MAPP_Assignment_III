@@ -34,5 +34,3 @@ export default StyleSheet.create({
         backgroundColor: '#0D0D0D',
     },
 });
-
-//* Cool color //#1E293B
