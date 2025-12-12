@@ -22,7 +22,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#393939ff',
+        backgroundColor: '#39396fff',
         padding: 10,
     },
     sectionContainer: {
@@ -32,7 +32,7 @@ export default StyleSheet.create({
     titleOfSectionContainer: {
         padding: 10,
         borderRadius: 10,
-        backgroundColor: '#393939ff',
+        backgroundColor: '#39396fff',
     },
     titleOfSection: {
         color: '#fff',
@@ -43,7 +43,7 @@ export default StyleSheet.create({
         padding: 10,
         borderRadius: 10,
         justifyContent: 'space-evenly',
-        backgroundColor: '#1A1A1A',
+        backgroundColor: '#1A1A2F',
     },
     sectionText: {
         color: '#fff',
@@ -53,13 +53,13 @@ export default StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
-        backgroundColor: '#1A1A1A',
+        backgroundColor: '#1A1A2F',
         padding: 10,
         borderRadius: 10,
         gap: 10,
     },
     timeButton: {
-        backgroundColor: '#494949ff',
+        backgroundColor: '#49494fff',
         width: 'auto',
         height: 'auto',
         padding: 6,
@@ -72,7 +72,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
     },
     ratingLogosContainer: {
-        backgroundColor: '#1A1A1A',
+        backgroundColor: '#1A1A2F',
         flexDirection: 'row',
         justifyContent: 'space-around',
         marginBottom: 10,

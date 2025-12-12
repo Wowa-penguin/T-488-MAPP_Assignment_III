@@ -13,31 +13,34 @@ export default StyleSheet.create({
         alignSelf: 'center',
         borderStyle: 'solid',
         borderWidth: 3,
-        width: 'auto',
-        height: 200,
+        width: '97%',
+        height: 'auto',
         paddingLeft: 10,
         paddingRight: 10,
         gap: 8,
         borderRadius: 20,
-        borderColor: '#393939ff', //* border color for all movie cards
-        backgroundColor: '#1A1A1A', //* background color for all movie cards
+        borderColor: '#39396fff', //* border color for all movie cards
+        backgroundColor: '#1A1A2F', //* background color for all movie cards
     },
     poster: {
-        borderTopLeftRadius: 10,
-        borderBottomLeftRadius: 10,
+        borderRadius: 15,
+        padding: 10,
         width: 100,
         alignSelf: 'center',
         height: '96%',
+        
     },
     cardContent: {
         justifyContent: 'space-between',
-        paddingTop: 5,
-        paddingBottom: 5,
+        paddingTop: 3,
+        paddingBottom: 3,
+        flex: 1,
+        minWidth: 0,
     },
     movieTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        width: 250,
+        flexShrink: 1,
     },
     genresContainer: {
         width: 'auto',
@@ -45,13 +48,13 @@ export default StyleSheet.create({
         gap: 5,
     },
     footerRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: 6,
     },
     certificateRow: {
         flexDirection: 'row',
-        gap: 10,
+        gap: 15,
         alignItems: 'center',
     },
     certificateIcon: {
@@ -67,8 +70,8 @@ export default StyleSheet.create({
         width: '70%',
         margin: 12,
         borderWidth: 5,
-        borderColor: '#393939ff',
-        backgroundColor: '#1A1A1A',
+        borderColor: '#39396fff',
+        backgroundColor: '#1A1A2F',
         padding: 20,
         color: '#fff',
     },
@@ -86,4 +89,14 @@ export default StyleSheet.create({
         borderRadius: 12,
         elevation: 10,
     },
+    posterWrapper: {
+        borderRadius: 10,
+        overflow: 'hidden',
+        width: 100,
+        height: '96%',
+        alignSelf: 'center',
+    },
+
+  
+
 });
