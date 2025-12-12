@@ -88,7 +88,7 @@ const MovieDetails = () => {
                         {movieInfo.year}
                     </Text>
                     <Text style={globalStyles.defaultTextColor}>
-                        {movieInfo.durationMinutes} minutes long
+                        {movieInfo.durationMinutes} mínútur
                     </Text>
                 </View>
                 <View style={styles.buttonsContainer}>
