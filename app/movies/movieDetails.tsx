@@ -12,7 +12,14 @@ import styles from '@/styles/movieDetailes';
 import moviesStyles from '@/styles/movies';
 import { checkNames } from '@/utils/checkAndHandelNames';
 import { useLocalSearchParams } from 'expo-router';
-import { Image, ScrollView, Text, View } from 'react-native';
+import {
+    Image,
+    ScrollView,
+    Share,
+    Text,
+    TouchableOpacity,
+    View,
+} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 const MovieDetails = () => {
@@ -44,6 +51,14 @@ const MovieDetails = () => {
             </View>
         );
     }
+
+    const handleShare = async () => {
+        const link = `myapp://movie/${movieInfo._id}`;
+
+        await Share.share({
+            message: `${movieInfo.title} (${movieInfo.year})\n${link}`,
+        });
+    };
 
     const isFavorite = favoriteIds.includes(movieInfo._id);
 
@@ -92,7 +107,11 @@ const MovieDetails = () => {
                         {isFavorite ? '❤️' : '🤍'}
                     </Text>
                 </Button>
-
+                <TouchableOpacity onPress={handleShare}>
+                    <Text style={[globalStyles.defaultTouchableOpacity]}>
+                        Share
+                    </Text>
+                </TouchableOpacity>
                 <View style={styles.sectionContainer}>
                     <View style={styles.titleOfSectionContainer}>
                         <Text style={styles.titleOfSection}>Genres</Text>
