@@ -1,59 +1,43 @@
-import React from "react";
-import { View, Text } from 'react-native';
-import { WebView } from 'react-native-webview';
+import React  from "react";
+import { View, Text, TouchableOpacity } from 'react-native';
+import * as WebBrowser from 'expo-web-browser';
 import globalStyles from "@/styles/globalStyles";
 import trailerPlayerStyles from '@/styles/trailerPlayer';
 
-export type TrailerPlayerProps = {
-    trailerUrl?: string | null;
-    title?: string;
+type TrailerPlayerProps = {
+    trailerUrl?: string | null;    
 };
 
-const TrailerPlayer: React.FC<TrailerPlayerProps> = ({
-    trailerUrl,
-    title = 'Stikla',
-}) => {
+const TrailerPlayer: React.FC<TrailerPlayerProps> = ({ trailerUrl }) => {    
     if (!trailerUrl) {
         return (
             <View style={trailerPlayerStyles.emptyContainer}>
                 <Text
                     style={[
                         globalStyles.defaultTitel,
-                        trailerPlayerStyles.heading,
-                    ]}
-                >
-                    {title}
-                </Text>
-                <Text
-                    style={[
-                        globalStyles.defaultBackgroundColor,
                         trailerPlayerStyles.emptyText,
                     ]}
                 >
                     Engin stikla í boði fyrir þessa mynd.
                 </Text>
-            </View>            
-        )
+            </View>
+        );
     }
+                
+    const openTrailer = async () => {
+        await WebBrowser.openBrowserAsync(trailerUrl);
+    };
 
     return (
         <View style={trailerPlayerStyles.container}>
-            <Text
-                style={[
-                    globalStyles.defaultTitel,
-                    trailerPlayerStyles.heading,
-                ]}
+            <TouchableOpacity
+                style={globalStyles.defaultButton}
+                onPress={openTrailer}
             >
-                {title}
-            </Text>
-            <View style={trailerPlayerStyles.webViewWrapper}>
-                <WebView
-                    source={{ uri: trailerUrl }}
-                    allowsFullscreenVideo
-                    javaScriptEnabled
-                    domStorageEnabled
-                />
-            </View>
+                <Text style={globalStyles.defaultTextColor}>
+                    ▶ Horfa á stiklu
+                </Text>
+            </TouchableOpacity>
         </View>
     );
 };

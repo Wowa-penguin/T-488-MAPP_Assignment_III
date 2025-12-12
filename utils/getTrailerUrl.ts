@@ -1,33 +1,35 @@
 export function getTrailerUrl(movie: any): string | null {
-    if (!movie || !Array.isArray(movie.trailers)) {
-        return null;
-    }
+    const trailers = movie?.trailers;
+    if (!Array.isArray(trailers)) return null;
 
-    for (const trailerGroup of movie.trailers) {
-        if (!trailerGroup || !Array.isArray(trailerGroup.results)) {
-            continue;
-        }
-
-        // TMDb-like results typically look like:
-        // { key: 'abc123', site: 'YouTube', type: 'Trailer', ... }
-        const youtubeTrailer = trailerGroup.results.find((result: any) => {
-            if (!result) return false;
-
-            const site = result.site;
-            const type = result.type;
-            const key = result.key;
-
-            return (
-                typeof key === 'string' &&
-                site === 'YouTube' &&
-                (type === 'Trailer' || type === 'Teaser')
-            );
-        });
-
-        if (youtubeTrailer) {
-            return `https://www.youtube.com/embed/${youtubeTrailer.key}`;
+    const allowedTypes = ['Trailer', 'Teaser', 'Featurette'];
+    
+    const allResults: any[] = [];
+    for (const group of trailers) {
+        if (group && Array.isArray(group.results)) {
+            allResults.push(...group.results);
         }
     }
     
-    return null;
+    const youtube = allResults.filter(
+        (r) =>
+            r &&
+            r.site === 'YouTube' &&
+            typeof r.key === 'string' &&
+            r.key.trim() !== '' &&
+            allowedTypes.includes(r.type)
+    );
+
+    if (youtube.length === 0) return null;
+    
+    const rank = (r: any) => {
+        const typeRank =
+            r.type === 'Trailer' ? 0 : r.type === 'Teaser' ? 1 : 2;
+        const officialRank = r.official ? 0 : 1;
+        return `${typeRank}-${officialRank}`;
+    };
+
+    youtube.sort((a, b) => rank(a).localeCompare(rank(b)));
+
+    return 'https://www.youtube.com/embed/${youtube[0].key}';
 }

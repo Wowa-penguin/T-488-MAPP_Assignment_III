@@ -4,6 +4,7 @@ import Genres from '@/components/genres';
 import MovieInfoPosterAndPlot from '@/components/movieInfoPosterAndPlot';
 import Ratings from '@/components/ratings';
 import Showtime from '@/components/showtime';
+import TrailerPlayer from '@/components/trailerPlayer';
 import { Movie } from '@/models/movies';
 import { RootState } from '@/store';
 import { toggleFavorite } from '@/store/favoritesSlice';
@@ -11,6 +12,7 @@ import globalStyles from '@/styles/globalStyles';
 import styles from '@/styles/movieDetailes';
 import moviesStyles from '@/styles/movies';
 import { checkNames } from '@/utils/checkAndHandelNames';
+import { getTrailerUrl } from '@/utils/getTrailerUrl';
 import { useLocalSearchParams } from 'expo-router';
 import { Image, ScrollView, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -44,6 +46,8 @@ const MovieDetails = () => {
             </View>
         );
     }
+
+    const trailerUrl = getTrailerUrl(movieInfo);
 
     const isFavorite = favoriteIds.includes(movieInfo._id);
 
@@ -109,6 +113,16 @@ const MovieDetails = () => {
                     directors={names.directors}
                     writers={names.writer}
                 />
+
+                <View style={styles.sectionContainer}>
+                    <View style={styles.titleOfSectionContainer}>
+                        <Text style={styles.titleOfSection}>Trailer</Text>
+                    </View>
+
+                    <View style={styles.sectionContentContainer}>
+                        <TrailerPlayer trailerUrl={trailerUrl} />
+                    </View>
+                </View>
 
                 {Array.isArray(movieInfo.showtimes) &&
                     movieInfo.showtimes.length > 0 && (
