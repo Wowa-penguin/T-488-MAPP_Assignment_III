@@ -12,14 +12,7 @@ import styles from '@/styles/movieDetailes';
 import moviesStyles from '@/styles/movies';
 import { checkNames } from '@/utils/checkAndHandelNames';
 import { useLocalSearchParams } from 'expo-router';
-import {
-    Image,
-    ScrollView,
-    Share,
-    Text,
-    TouchableOpacity,
-    View,
-} from 'react-native';
+import { Image, ScrollView, Share, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 const MovieDetails = () => {
@@ -98,20 +91,27 @@ const MovieDetails = () => {
                         {movieInfo.durationMinutes} minutes long
                     </Text>
                 </View>
-
-                <Button
-                    style={[globalStyles.defaultButton, styles.favoriteButton]}
-                    onPress={() => dispatch(toggleFavorite(movieInfo._id))}
-                >
-                    <Text style={globalStyles.defaultTextColor}>
-                        {isFavorite ? '❤️' : '🤍'}
-                    </Text>
-                </Button>
-                <TouchableOpacity onPress={handleShare}>
-                    <Text style={[globalStyles.defaultTouchableOpacity]}>
+                <View style={styles.buttonsContainer}>
+                    <Button
+                        style={[
+                            globalStyles.defaultButton,
+                            styles.favoriteButton,
+                        ]}
+                        onPress={() => dispatch(toggleFavorite(movieInfo._id))}
+                    >
+                        <Text style={globalStyles.defaultTextColor}>
+                            {isFavorite ? '❤️' : '🤍'}
+                        </Text>
+                    </Button>
+                    <Button
+                        onPress={handleShare}
+                        style={styles.touchableOpacity}
+                        textStyle={styles.touchableOpacityText}
+                    >
                         Share
-                    </Text>
-                </TouchableOpacity>
+                    </Button>
+                </View>
+
                 <View style={styles.sectionContainer}>
                     <View style={styles.titleOfSectionContainer}>
                         <Text style={styles.titleOfSection}>Genres</Text>
