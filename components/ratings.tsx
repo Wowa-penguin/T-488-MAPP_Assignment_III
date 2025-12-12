@@ -11,7 +11,8 @@ type RatingsProps = {
 };
 
 const Ratings = ({ ratings }: RatingsProps) => {
-    const imdbRating = (parseFloat(ratings.imdb) / 10) * 100;
+    let imdbRating = (parseFloat(ratings.imdb) / 10) * 100;
+    if (isNaN(imdbRating)) imdbRating = 0;
 
     return (
         <View style={styles.ratingLogosContainer}>
@@ -30,7 +31,10 @@ const Ratings = ({ ratings }: RatingsProps) => {
                     style={styles.ratingsLogo}
                 />
                 <Text style={globalStyles.defaultTextColor}>
-                    {parseFloat(ratings.rotten_audience).toFixed(0)}%
+                    {isNaN(parseFloat(ratings.rotten_audience))
+                        ? '0'
+                        : parseFloat(ratings.rotten_audience).toFixed(0)}
+                    %
                 </Text>
             </View>
             <View style={styles.ratingLogoAndTextContainer}>
@@ -39,7 +43,10 @@ const Ratings = ({ ratings }: RatingsProps) => {
                     style={styles.ratingsLogo}
                 />
                 <Text style={globalStyles.defaultTextColor}>
-                    {parseFloat(ratings.rotten_critics).toFixed(0)}%
+                    {isNaN(parseFloat(ratings.rotten_critics))
+                        ? '0'
+                        : parseFloat(ratings.rotten_critics).toFixed(0)}
+                    %
                 </Text>
             </View>
         </View>

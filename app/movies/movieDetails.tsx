@@ -80,7 +80,7 @@ const MovieDetails = () => {
                         {movieInfo.year}
                     </Text>
                     <Text style={globalStyles.defaultTextColor}>
-                        Duration {movieInfo.durationMinutes} minutes long
+                        {movieInfo.durationMinutes} minutes long
                     </Text>
                 </View>
 
@@ -123,8 +123,9 @@ const MovieDetails = () => {
                         </View>
                     )}
                 <View>
-                    {/* todo: more detailed ratings display and styles */}
-                    <Ratings ratings={movieInfo.ratings} />
+                    {movieInfo.ratings ? (
+                        <Ratings ratings={movieInfo.ratings} />
+                    ) : null}
                 </View>
             </View>
         </ScrollView>
