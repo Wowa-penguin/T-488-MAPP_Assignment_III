@@ -4,6 +4,7 @@ import TheaterReducer from './theaterSlice';
 import upcomingMoviesReducer from './upcomingSlice';
 import favoritesSlice from './favoritesSlice';
 import { loadFavorites } from './favoritesSlice';
+import reviewsReducer, { loadReviews } from './reviewsSlice';
 
 export const store = configureStore({
     reducer: {
@@ -11,10 +12,12 @@ export const store = configureStore({
         upcoming: upcomingMoviesReducer,
         theater: TheaterReducer,
         favorites: favoritesSlice,
+        reviews: reviewsReducer,
     },
 });
 
 loadFavorites(store.dispatch);
+loadReviews(store.dispatch);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
