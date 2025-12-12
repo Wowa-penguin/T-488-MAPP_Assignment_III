@@ -18,6 +18,11 @@ const Index = () => {
         error,
     } = useSelector((state: RootState) => state.theater);
 
+    const sortedTheaters = useMemo(
+        () => [...theater].sort((a, b) => a.name.localeCompare(b.name)),
+        [theater]
+    );
+
     useEffect(() => {
         if (status === 'idle') {
             dispatch(fetchTheaters());
@@ -35,11 +40,6 @@ const Index = () => {
             </View>
         );
     }
-
-    const sortedTheaters = useMemo(
-        () => [...theater].sort((a, b) => a.name.localeCompare(b.name)),
-        [theater]
-    );
 
     return (
         <ScrollView
