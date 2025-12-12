@@ -73,8 +73,12 @@ export default StyleSheet.create({
         justifyContent: 'center',
     },
     ratingLogosContainer: {
+        backgroundColor: '#1A1A1A',
         flexDirection: 'row',
         justifyContent: 'space-around',
+        marginBottom: 10,
+        padding: 10,
+        borderRadius: 10,
     },
     ratingLogoAndTextContainer: {
         flexDirection: 'row',
