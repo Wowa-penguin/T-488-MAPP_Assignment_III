@@ -101,6 +101,12 @@ export default StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
+    clearFiltersButton: {
+        width: '30%',
+        alignItems: 'center',
+        alignSelf: 'center',
+        marginTop: 4,
+    },
     input: {
         height: 'auto',
         width: '70%',

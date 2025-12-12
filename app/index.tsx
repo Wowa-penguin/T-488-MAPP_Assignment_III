@@ -175,11 +175,7 @@ export default function HomeScreen() {
                     <Button
                         style={[
                             globalStyles.defaultButton,
-                            {
-                                width: '30%',
-                                alignItems: 'center',
-                                alignSelf: 'center',
-                            },
+                            styles.clearFiltersButton,
                         ]}
                         textStyle={globalStyles.defaultTextColor}
                         onPress={clear}
