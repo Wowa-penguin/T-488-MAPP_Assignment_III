@@ -2,6 +2,7 @@ import ActorsAndDirectors from '@/components/actorsAndDirectors';
 import Button from '@/components/button';
 import Genres from '@/components/genres';
 import MovieInfoPosterAndPlot from '@/components/movieInfoPosterAndPlot';
+import Ratings from '@/components/ratings';
 import Showtime from '@/components/showtime';
 import { Movie } from '@/models/movies';
 import { RootState } from '@/store';
@@ -121,6 +122,9 @@ const MovieDetails = () => {
                             ))}
                         </View>
                     )}
+                <View>
+                    <Ratings ratings={movieInfo.ratings} />
+                </View>
             </View>
         </ScrollView>
     );

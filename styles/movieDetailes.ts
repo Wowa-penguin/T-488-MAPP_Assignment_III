@@ -69,4 +69,17 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    ratingLogosContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
+    ratingLogoAndTextContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    ratingsLogo: {
+        width: 75,
+        height: 75,
+        resizeMode: 'contain',
+    },
 });
