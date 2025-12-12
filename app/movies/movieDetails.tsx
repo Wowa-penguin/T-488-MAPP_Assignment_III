@@ -108,7 +108,7 @@ const MovieDetails = () => {
                         style={styles.touchableOpacity}
                         textStyle={styles.touchableOpacityText}
                     >
-                        Share
+                        Deila
                     </Button>
                 </View>
 
