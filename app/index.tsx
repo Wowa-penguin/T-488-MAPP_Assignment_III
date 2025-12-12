@@ -81,7 +81,7 @@ export default function HomeScreen() {
             if (!matchesSearch) return false;
         }
 
-        if (ratingLower) {
+        if (ratingLower && ratingType) {
             switch (ratingType) {
                 case 'imdb':
                     if (
